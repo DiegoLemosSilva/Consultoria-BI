@@ -1,1 +1,0 @@
-web: gunicorn meu_projeto:app
