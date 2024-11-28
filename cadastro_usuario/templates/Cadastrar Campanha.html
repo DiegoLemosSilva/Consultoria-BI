@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+ 
+<head>
+    {% load static %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Start Point</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'cadastro_usuario' %}/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link href="{% static 'cadastro_usuario' %}/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'cadastro_usuario' %}/assets/libs/css/style.css">
+    <link rel="stylesheet" href="{% static 'cadastro_usuario' %}/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <link rel="stylesheet" href="{% static 'cadastro_usuario' %}/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+         <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+         <div class="dashboard-header">
+            <nav class="navbar navbar-expand-lg bg-white fixed-top">
+                <a class="navbar-brand" href="">Start Point</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto navbar-right-top">
+                        <li class="nav-item dropdown nav-user">
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-power-off mr-2"></i> Logout</a>
+                            
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+      <div class="nav-left-sidebar sidebar-dark">
+            <div class="menu-list">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav flex-column">
+                            <li class="nav-divider">
+                                Menu
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link " href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard <span class="badge badge-success">6</span></a>
+                                
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>Cadastros</a>
+                                <div id="submenu-2" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="">Campanhas <span class="badge badge-secondary"></span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="">Lojas</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="">Produtos</a>
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fab fa-searchengin"></i>Consultar</a>
+                                <div id="submenu-3" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="">Campanhas</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="">Produtos</a>
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+                            </li>  
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="container-fluid dashboard-content">
+                <!-- ============================================================== -->
+                <!-- pageheader -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header">
+                            <h2 class="pageheader-title">Cadastrar Campanha</h2>
+                            <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+                            <div class="page-breadcrumb">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Cadastros</a></li>
+                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Campanha</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Nova Campanha</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end pageheader -->
+                <!-- ============================================================== -->
+                
+                <!-- basic form  -->
+                        <!-- ============================================================== -->
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="section-block" id="basicform">
+                                    <h3 class="section-title">Basic Form Elements</h3>
+                                    <p>Use custom button styles for actions in forms, dialogs, and more with support for multiple sizes, states, and more.</p>
+                                </div>
+                                <div class="card">
+                                    <h5 class="card-header">Basic Form</h5>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="inputText3" class="col-form-label">Input Text</label>
+                                                <input id="inputText3" type="text" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputEmail">Email address</label>
+                                                <input id="inputEmail" type="email" placeholder="name@example.com" class="form-control">
+                                                <p>We'll never share your email with anyone else.</p>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputText4" class="col-form-label">Number Input</label>
+                                                <input id="inputText4" type="number" class="form-control" placeholder="Numbers">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputPassword">Password</label>
+                                                <input id="inputPassword" type="password" placeholder="Password" class="form-control">
+                                            </div>
+                                            <div class="custom-file mb-3">
+                                                <input type="file" class="custom-file-input" id="customFile">
+                                                <label class="custom-file-label" for="customFile">File Input</label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlTextarea1">Example textarea</label>
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="card-body border-top">
+                                        <h3>Sizing</h3>
+                                        <form>
+                                            <div class="form-group">
+                                                <label for="inputSmall" class="col-form-label">Small</label>
+                                                <input id="inputSmall" type="text" value=".form-control-sm" class="form-control form-control-sm">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputDefault" class="col-form-label">Default</label>
+                                                <input id="inputDefault" type="text" value="Default input" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputLarge" class="col-form-label">Large</label>
+                                                <input id="inputLarge" type="text" value=".form-control-lg" class="form-control form-control-lg">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- end basic form  -->
+            </div>
+            
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <script src="{% static 'cadastro_usuario' %}/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="{% static 'cadastro_usuario' %}/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="{% static 'cadastro_usuario' %}/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="{% static 'cadastro_usuario' %}/assets/libs/js/main-js.js"></script>
+</body>
+ 
+</html>

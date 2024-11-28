@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+ 
+<head>
+    {% load static %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Start Point</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'cadastro_usuario' %}/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link href="{% static 'cadastro_usuario' %}/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'cadastro_usuario' %}/assets/libs/css/style.css">
+    <link rel="stylesheet" href="{% static 'cadastro_usuario' %}/assets/libs/css/jquery.multiselect.css">
+    <link rel="stylesheet" href="{% static 'cadastro_usuario' %}/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <link rel="stylesheet" href="{% static 'cadastro_usuario' %}/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="{% static 'cadastro_usuario' %}/assets/vendor/select2/css/select2.css">
+    
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+         <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+         <div class="dashboard-header">
+            <nav class="navbar navbar-expand-lg bg-white fixed-top">
+                <a class="navbar-brand" href="">Start Point</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto navbar-right-top">
+                        <li class="nav-item dropdown nav-user">
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-power-off mr-2"></i> Logout</a>
+                            
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+      <div class="nav-left-sidebar sidebar-dark">
+            <div class="menu-list">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav flex-column">
+                            <li class="nav-divider">
+                                Menu
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link " href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard <span class="badge badge-success">6</span></a>
+                                
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>Cadastros</a>
+                                <div id="submenu-2" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="">Campanhas <span class="badge badge-secondary"></span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="">Lojas</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="">Produtos</a>
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fab fa-searchengin"></i>Consultar</a>
+                                <div id="submenu-3" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="">Campanhas</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="">Produtos</a>
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+                            </li>  
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="container-fluid dashboard-content">
+                <!-- ============================================================== -->
+                <!-- pageheader -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header">
+                            <h2 class="pageheader-title">Cadastrar Projeto</h2>
+                            
+                            <div class="page-breadcrumb">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Cadastros</a></li>
+                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Campanha</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Nova Campanha</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <!-- ============================================================== -->
+                <!-- end pageheader -->
+                <!-- ============================================================== -->
+                
+                <form method="POST">
+                    {% csrf_token %}
+                    {% if btn_avancar == 1 %}
+                    
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="post">
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                            <label for="input-select">Nome Projeto</label>
+                                            <input type="text" class="form-control" id="validationCustom01" placeholder="Nome do Projeto" value="{{nome_projeto}}" required="" name="nome_projeto">
+                                        </div>
+                                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                            <label for="input-select">Canal</label>
+                                            <select class="form-control selectpicker" name="canal">
+                                                <option {% if canal_selecionado == 'WHS' %}selected{% endif %}>WHS</option>
+                                                <option {% if canal_selecionado == 'WHS - ESPECIALIZADOS' %}selected{% endif %}>WHS - ESPECIALIZADOS</option>
+                                                <option {% if canal_selecionado == 'DTC' %}selected{% endif %}>DTC</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <button class="btn btn-rounded btn-secondary " type="submit" name="Avancar" value=2>
+                                                <i class="fas fa-arrow-right"></i> Avançar 
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </form>
+                        </div>
+                    </div>   
+                {%endif%}
+                </form>
+                
+                
+                {% if btn_avancar == 2 %}
+                <div class="card">                     
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                <label for="input-select">Nome Projeto selecionado</label>
+                                <input type="text" class="form-control" id="validationCustom01" placeholder="" value="{{nome_projeto}}" required="" name="nome_projeto" readonly>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                <label for="input-select">canal selecionado</label>
+                                <input type="text" class="form-control" id="validationCustom01" placeholder="" value="{{canal_selecionado}}" required="" name="canal" readonly >
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+                                
+                                <strong>Store Concept:</strong>                                          
+                                <select name="list" multiple="multiple" id="validationCustom01" class="3col active form-control">                                            
+                                    <option value="BRAND CENTER">BRAND CENTER</option>
+                                    <option value="CORE">CORE</option>
+                                    <option value="HOME OF SPORT (HOS)">HOME OF SPORT (HOS)</option>
+                                    <option value="HOMECOURT">HOMECOURT</option>
+                                    <option value="STADIUM 1.0">STADIUM 1.0</option>
+                                    <option value="STADIUM 2.0">STADIUM 2.0</option>
+                                    <option value="PULSE">PULSE</option>
+                                    <option value="NEIGHBOURHOOD">NEIGHBOURHOOD</option>
+                                    <option value="THE COLLECTION">THE COLLECTION</option>
+                                    
+                                    
+                                </select>
+                                
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                
+                                <strong>Segment:</strong>                                          
+                                <select name="list" multiple="multiple" id="validationCustom01" class="3col active form-control">                                            
+                                    <option value="MID">MID</option>
+                                    <option value="TOP">TOP</option>
+                                    <option value="VALUE">VALUE</option>
+                                                                       
+                                    
+                                </select>
+                                
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                
+                                <strong>Execução:</strong>                                          
+                                <select name="list" multiple="multiple" id="validationCustom01" class="3col active form-control">                                            
+                                    <option value="BEST">BEST</option>
+                                    <option value="BETTER">BETTER</option>
+                                    <option value="GOOD">GOOD</option>
+                                                                       
+                                    
+                                </select>
+                                
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
+                                
+                                <strong>UF:</strong>                                          
+                                <select name="list" multiple="multiple" id="validationCustom01" class="3col active form-control">                                                
+                                    <option value="SP">SP</option>
+                                    <option value="RJ">RJ</option>
+                                    <option value="ES">ES</option>
+                                    <option value="MG">MG</option>
+                                    <option value="PR">PR</option>
+                                    <option value="SC">SC</option>
+                                    <option value="RS">RS</option>                                                
+                                </select>
+                            
+                            </div>
+
+                            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
+                                <div class="">
+                                    <strong>Material:</strong>
+
+                                    <select class="form-control" id="productList" name="material" onchange="updateOptions()">
+
+                                            {% for produto in pecas %}
+                                            <option value="{{produto.peca}}">{{produto.peca}}</option>
+                                            {%endfor%}
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <strong>Selecione uma Variação:</strong>
+                                <select class="form-control" id="variationsList">
+                                    <option  value="" selected disabled>Selecione uma variação</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+                                    <strong>Quantidade:</strong>
+                                    <input type="number" id="quantity" min="1" value="1" />
+
+                            
+                                <!-- <button onclick="addProduct()" name="Avancar" value=2 >Adicionar</button> -->
+                            
+                                <a href="#" onclick="addProduct()" class="btn btn-outline-success btn-xs">ADD</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <h5 class="card-header">Materiais</h5>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table no-wrap p-table">
+                                    <thead class="bg-light">
+                                        <tr class="border-0">
+                                            <th class="border-0">Peça</th>
+                                            <th class="border-0">Variaçao</th>
+                                            <th class="border-0">Qtd</th>
+                                            <th class="border-0">Valor Unitario</th>
+                                            <th class="border-0">Sub-Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="taskList" >
+                                                                                         
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="total">Total: R$ 0,00</div>
+                    </div>
+                                
+                    
+                                
+                            
+                        
+                    </div>
+                </div> 
+                        
+                        
+
+
+                        
+                    
+                        
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <button class="btn btn-rounded btn-secondary " type="submit" name="Avancar" value=2>
+                            <i class="fas fa-arrow-right"></i> Confirmar 
+                        </button>
+                        
+                    </div>      
+                </form>
+                {%endif%}
+                
+
+                
+                <!-- {{nome_projeto}}
+                {{canal_selecionado}}
+                {{redes_selecionadas}}
+                {{btn_avancar}} -->
+                
+                
+            </div>
+            
+        </div>
+        
+
+    </div>
+    
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <script src="{% static 'cadastro_usuario' %}/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="{% static 'cadastro_usuario' %}/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="{% static 'cadastro_usuario' %}/assets/vendor/select2/js/select2.min.js"></script>
+    <script src="{% static 'cadastro_usuario' %}/assets/libs/js/main-js.js"></script>
+    <script src="{% static 'cadastro_usuario' %}/assets/libs/js/jquery.multiselect.js"></script>
+    <script src="{% static 'cadastro_usuario' %}/assets/libs/js/jquery.multiselect.js"></script>
+<script>
+$(function() {
+
+$('select[multiple].active.3col').multiselect({
+  columns: 2,
+  placeholder: 'Select States',
+  search: true,
+  searchOptions: {
+      'default': 'Search States'
+  },
+  selectAll: true
+});
+
+});
+</script>
+    
+<script>
+    let total = 0;
+    let productValue = 0;
+    const todosOsCardapios = [
+        {% for produto in todos_os_cardapios %}
+            {
+                id: '{{ produto.id_material }}',
+                nome: '{{ produto.peca }}',
+                preco_uni: '{{ produto.Preco_uni }}',
+                Preco_maior_10: '{{ produto.Preco_maior_10 }}',
+                Preco_maior_30: '{{ produto.Preco_maior_30 }}',
+                Preco_maior_50: '{{ produto.Preco_maior_50 }}',
+                variacao:'{{ produto.variacao }}',
+            },
+        {% endfor %}
+    ];
+    function updateOptions() {
+    const productList = document.getElementById('productList');
+    const variationsList = document.getElementById('variationsList');
+
+    // Obtém o ID do produto selecionado
+    const selectedProductId = productList.value;
+
+    // Encontra todos os produtos correspondentes ao nome selecionado
+    const selectedProducts = todosOsCardapios.filter(product => product.nome === selectedProductId);
+
+    // Se não houver produtos encontrados, sai da função
+    if (selectedProducts.length === 0) {
+        console.error('Nenhum produto encontrado');
+        return;
+    }
+
+    // Limpa as opções existentes no segundo select
+    variationsList.innerHTML = '<option value="" selected disabled>Selecione uma variação</option>';
+
+    // Itera sobre os produtos encontrados
+    selectedProducts.forEach(product => {
+        const variacoes = product.variacao; // Caso as variações estejam separadas por vírgula
+        let start = 0; // Inicializa a posição de início
+
+        for (let i = 0; i < variacoes.length; i++) {
+            // Verifica se o caractere é uma vírgula (delimitador) ou se é o último caractere
+            if (variacoes[i] === ',' || i === variacoes.length - 1) {
+                // Se for o último caractere e não for uma vírgula, ajusta o índice
+                const end = (variacoes[i] === ',') ? i : i + 1;
+
+                // Extrai a variação
+                const variacao = variacoes.slice(start, end).trim();
+
+                // Cria a opção no select
+                const option = document.createElement('option');
+                option.value = variacao;
+                option.textContent = variacao;
+                variationsList.appendChild(option);
+
+                // Atualiza a posição de início da próxima variação
+                start = i + 1;
+            }
+        }
+    });
+}
+    // Função para adicionar um produto com quantidade ao carrinho
+    function addProduct() {
+        let productValue = 0;
+        const productList = document.getElementById('productList');
+        const variationsList = document.getElementById('variationsList');
+        const quantityInput = document.getElementById('quantity');
+        const taskList = document.getElementById('taskList');
+
+        const selectedOption = productList.options[productList.selectedIndex];
+        const selectedOption_variacao = variationsList.options[variationsList.selectedIndex];
+        const productName = selectedOption.textContent;
+        /* const productValue = parseFloat(selectedOption.value); */
+        const quantity = parseInt(quantityInput.value);
+        const productId = selectedOption.value;
+        const product_variacao = selectedOption_variacao.value;
+
+        if (quantity <= 0) {
+            alert('A quantidade deve ser maior que zero!');
+            return;
+        }
+        
+        const product = todosOsCardapios.find(p => p.nome === productId && p.variacao === product_variacao);
+        const price = parseFloat(product.preco_uni);
+        const variacao = product.variacao;
+        if(quantity <= 10){
+            productValue = parseFloat(product.preco_uni);
+            
+        }
+        else if(quantity <= 30){
+            productValue = parseFloat(product.Preco_maior_10);
+        }
+        else if(quantity <= 50){
+            productValue = parseFloat(product.Preco_maior_30);
+        }
+        else if(quantity > 50){
+            productValue = parseFloat(product.Preco_maior_50);
+        }
+        const totalPrice = productValue * quantity;
+
+        // Criar item na lista
+        const taskItem = document.createElement('tr');
+        taskItem.className = 'task';
+        taskItem.innerHTML = `
+                       
+            <tr name="materiais">
+                <td>${productName}</td>
+                <td>${variacao}</td>
+                <td>${quantity} </td>
+                <td>${productValue}</td>
+                <td>${totalPrice}</td>
+                <td><a href="#" onclick="removeTask(this, ${totalPrice})" class="btn btn-outline-danger btn-xs">Remover</a></td>
+            </tr>
+        `;
+
+        // Adicionar à lista
+        taskList.appendChild(taskItem);
+
+        // Atualizar total
+        total += totalPrice;
+        updateTotal();
+    }
+
+        // Função para remover uma linha e atualizar o total
+        function removeTask(button, itemTotal) {
+            const tableRow = button.closest('tr'); // Seleciona a linha correspondente
+            tableRow.remove(); // Remove a linha
+
+            total -= itemTotal; // Atualiza o total
+            updateTotal();
+        }
+
+    // Atualizar o valor total
+    function updateTotal() {
+        const totalDisplay = document.getElementById('total');
+        totalDisplay.textContent = `Total: R$ ${total.toFixed(2)}`;
+    }
+</script>
+
+<!-- Inicializar o Select2 -->
+<script>
+    $(document).ready(function() {
+
+        $('#productList').select2({
+            placeholder: "Selecione um canal",
+            allowClear: true // Permite limpar a seleção
+        });
+    });
+  </script>
+
+</body>
+ 
+</html>

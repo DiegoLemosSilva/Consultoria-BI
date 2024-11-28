@@ -1,0 +1,28 @@
+<h1>Carrinho</h1>
+<table>
+    <tr>
+        <th>Produto</th>
+        <th>Preço</th>
+        <th>Quantidade</th>
+        <th>Total</th>
+        <th>Ações</th>
+    </tr>
+    {% for key, item in carrinho.items %}
+    <tr>
+        <td>{{ item.nome }}</td>
+        <td>R$ {{ item.preco }}</td>
+        <td>
+            <form method="POST" action="{% url 'atualizar_carrinho' key %}">
+                {% csrf_token %}
+                <input type="number" name="quantidade" value="{{ item.quantidade }}" min="0" style="width: 50px;">
+                <button type="submit">Atualizar</button>
+            </form>
+        </td>
+        <td>R$ {{ item.quantidade|floatformat:2|float:item.preco|floatformat:2 }}</td>
+        <td>
+            <a href="{% url 'remover_do_carrinho' key %}">Remover</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="/">Continuar Comprando</a>

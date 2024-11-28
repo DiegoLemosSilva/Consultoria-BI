@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+ 
+<head>
+    {% load static %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Start Point</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'cadastro_usuario' %}/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link href="{% static 'cadastro_usuario' %}/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'cadastro_usuario' %}/assets/libs/css/style.css">
+    <link rel="stylesheet" href="{% static 'cadastro_usuario' %}/assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+    <link rel="stylesheet" href="{% static 'cadastro_usuario' %}/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css">
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+         <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+        <div class="dashboard-header">
+            <nav class="navbar navbar-expand-lg bg-white fixed-top">
+                <a class="navbar-brand" href="">Start Point</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto navbar-right-top">
+                        <li class="nav-item dropdown nav-user">
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-power-off mr-2"></i> Logout</a>
+                            
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        <div class="nav-left-sidebar sidebar-dark">
+            <div class="menu-list">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav flex-column">
+                            <li class="nav-divider">
+                                Menu
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link " href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Dashboard <span class="badge badge-success">6</span></a>
+                                
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fa fa-fw fa-rocket"></i>Cadastros</a>
+                                <div id="submenu-2" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="">Campanhas <span class="badge badge-secondary"></span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="">Lojas</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="">Produtos</a>
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fab fa-searchengin"></i>CHECK IN</a>
+                                <div id="submenu-3" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="">Instalação</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="">Desisntalação</a>
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+                            </li>  
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="container-fluid dashboard-content">
+                <!-- ============================================================== -->
+                <!-- pageheader -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header">
+                            <h2 class="pageheader-title">CHECK IN</h2>
+                            <div class="page-breadcrumb">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item">Consultar</li>
+                                        <li class="breadcrumb-item">Check In</li>
+                                        <li class="breadcrumb-item">Instalação</li>
+                                        {% if tipo != '' %}
+                                            <li class="breadcrumb-item">{{tipo}}</li>
+                                        {% endif %}
+                                        
+                                        
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end pageheader -->
+                <!-- ============================================================== -->
+            
+                <!-- justified tabs  -->
+                        <!-- ============================================================== -->
+                      
+                <div class="">
+                    
+                    <div class="tab-regular">
+                                            
+                        <div class="tab-content" id="myTabContent7">
+                            <div class="tab-pane fade show active" id="home-justify" role="tabpanel" aria-labelledby="home-tab-justify">
+                                <form method="get" id="form1"> 
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <div class="form-row">
+                                                                                       
+                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                <label for="input-select">Tipo</label>
+                                                <select class="form-control" id="input-select" name="tipo">
+                                                    <option {% if tipo == 'Campanha' %}selected{% endif %}>Campanha</option>
+                                                    <option {% if tipo == 'Projeto' %}selected{% endif %}>Projeto</option>
+                                                    <option {% if tipo == 'Abertura' %}selected{% endif %}>Abertura</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                                <button class="btn btn-rounded btn-secondary " type="submit" name="pesquisar" value="Campanha">
+                                                    <i class="fab fa-searchengin"></i> Carregar
+                                                </button>
+                                            </div>
+                                        </div> 
+                                    </div>
+                                    {% if tipo == 'Campanha' or tipo == 'Projeto' %}
+                                        <div class="form-row">
+                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                
+                                                <label for="input-select">selecione {{tipo}}</label>
+                                                <select class="form-control" id="input-select" name="nome_campanha">
+                                                    <option> selecione </option>
+                                                    {% for Campanha in campanha %}
+                                                        <option {% if Campanha.nome_campanha == nome_campanha %}selected{% endif %}> {{ Campanha.nome_campanha }} </option>
+                                                
+                                                    {% empty %}
+                                                        <option>Nenhumna informação carregada</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                <label for="input-select">Produto</label>
+                                                <select class="form-control" id="input-select" name="produto">
+                                                    <option > All </option>
+                                                    {% for produto in chekin %}
+                                                        <option {% if produto.nome_produto == nome_produto %}selected{% endif %}> {{ produto.nome_produto }} </option>
+                                                
+                                                    {% empty %}
+                                                        <option></option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        
+                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                <label for="input-select">Canal</label>
+                                                <select class="form-control" id="input-select">
+                                                    <option > All </option>
+                                                    <option>WHS </option>
+                                                    <option>DTC </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    {% elif tipo == 'Abertura'%}
+                                        <div class="form-group">
+                                            <div class="form-row">
+                                                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                    <label for="input-select">localidade</label>
+                                                    <select class="form-control" id="input-select">
+                                                        <option>localidade 1 </option>
+                                                        <option>localidade 2 </option>
+                                                        <option>localidade 3</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                    <div class="form-group">
+                                        <div class="form-row">
+                                            
+                                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                                <button class="btn btn-primary btn-xs" type="submit" name="pesquisar" value="Campanha"><i class="fas fa-filter"></i></button>
+                                            </div>
+
+                                
+                                        </div>
+                                    </div>
+                                        
+                                </form>
+                                <div class="row">
+                                    {% for foto in chekin %}
+                                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                        <div class="card p-3">
+                                            <div style="display: flex; justify-content: center; align-items: center; height: 300px;">
+                                                <img style="width: 300; height: 300px; object-fit: contain;" src="{% static 'cadastro_usuario' %}/assets/images/{{ foto.img }}" class="img-fluid" alt="Card image cap">
+                                            </div>
+                                            <div class="card-body">                                                
+                                                <p class="card-text">{{foto.estabelecimento}} - {{foto.cidade}} - {{foto.estado}}</p></p>                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% empty %}
+                                        <li>Nenhuma foto disponível</li>
+                                    {% endfor %}
+                                    
+                                </div>
+
+                                <!-- <ul>
+                                    
+                                    {% for foto in chekin %}
+                                        <li>
+                                            <p>{{ foto.img }}</p>
+                                        </li>
+                                    {% empty %}
+                                        <li>Nenhuma foto disponível</li>
+                                    {% endfor %}
+                                </ul>  -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+                <!-- ============================================================== -->
+                <!-- end justified tabs  -->
+                <!-- ============================================================== -->
+                                       
+            </div>
+        </div>    
+    </div>
+    
+
+
+    
+
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <script src="{% static 'cadastro_usuario' %}/assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="{% static 'cadastro_usuario' %}/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="{% static 'cadastro_usuario' %}/assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="{% static 'cadastro_usuario' %}/assets/libs/js/main-js.js"></script>
+
+    
+
+</body>
+ 
+</html>
