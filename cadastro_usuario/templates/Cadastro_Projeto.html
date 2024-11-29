@@ -176,18 +176,19 @@
                         <div class="row">
                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                                 <label for="input-select">Nome Projeto selecionado</label>
-                                <input type="text" class="form-control" id="validationCustom01" placeholder="" value="{{nome_projeto}}" required="" name="nome_projeto" readonly>
+                                <input type="text" class="form-control" id="NomeProjeto" placeholder="" value="{{nome_projeto}}" required="" name="nome_projeto" readonly>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                                 <label for="input-select">canal selecionado</label>
-                                <input type="text" class="form-control" id="validationCustom01" placeholder="" value="{{canal_selecionado}}" required="" name="canal" readonly >
+                                <input type="text" class="form-control" id="CanalSelecionado" placeholder="" value="{{canal_selecionado}}" required="" name="canal" readonly >
                             </div>
                         </div>
+                        {% if canal_selecionado == 'DTC' %}
                         <div class="row">
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
                                 
                                 <strong>Store Concept:</strong>                                          
-                                <select name="list" multiple="multiple" id="validationCustom01" class="3col active form-control">                                            
+                                <select name="list" multiple="multiple" id="StoreConcept" class="3col active form-control">                                            
                                     <option value="BRAND CENTER">BRAND CENTER</option>
                                     <option value="CORE">CORE</option>
                                     <option value="HOME OF SPORT (HOS)">HOME OF SPORT (HOS)</option>
@@ -205,7 +206,7 @@
                             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
                                 
                                 <strong>Segment:</strong>                                          
-                                <select name="list" multiple="multiple" id="validationCustom01" class="3col active form-control">                                            
+                                <select name="list" multiple="multiple" id="Segment" class="3col active form-control">                                            
                                     <option value="MID">MID</option>
                                     <option value="TOP">TOP</option>
                                     <option value="VALUE">VALUE</option>
@@ -217,7 +218,7 @@
                             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
                                 
                                 <strong>Execução:</strong>                                          
-                                <select name="list" multiple="multiple" id="validationCustom01" class="3col active form-control">                                            
+                                <select name="list" multiple="multiple" id="Execucao" class="3col active form-control">                                            
                                     <option value="BEST">BEST</option>
                                     <option value="BETTER">BETTER</option>
                                     <option value="GOOD">GOOD</option>
@@ -228,11 +229,38 @@
                             </div>
                             
                         </div>
+                        {%endif%}
+
                         <div class="row">
+                            {% if canal_selecionado == 'WHS'%}
+                            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
+                                <strong>Rede:</strong>                                          
+                                <select name="list" multiple="multiple" id="Rede" class="3col active form-control">                                                
+                                    <option value="Centauro">Centauro</option>
+                                    <option value="Decathlon">Decathlon</option>
+                                    <option value="Bayard">Bayard</option>
+                                    <option value="Danki">Danki</option>
+                                    <option value="Sunika">Sunika</option>
+                                    <option value="Authentic Feet">Authentic Feet</option>
+                                    <option value="Art Walk">Art Walk</option>   
+                                    <option value="Danki">Kings</option>                                             
+                                </select>
+                            </div>
+                            {% elif canal_selecionado == 'WHS - ESPECIALIZADOS'%}
+                            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
+                                <strong>Rede:</strong>                                          
+                                <select name="list" multiple="multiple" id="Rede" class="3col active form-control">                                                
+                                    <option value="Running Land">Running Land</option>
+                                    <option value="Keep Running">Keep Running</option>
+                                    <option value="Velocità">Velocità</option>
+                                    <option value="World Tennis">World Tennis</option>                                           
+                                </select>
+                            </div>
+                            {%endif%}
                             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
                                 
                                 <strong>UF:</strong>                                          
-                                <select name="list" multiple="multiple" id="validationCustom01" class="3col active form-control">                                                
+                                <select name="list" multiple="multiple" id="Uf" class="3col active form-control">                                                
                                     <option value="SP">SP</option>
                                     <option value="RJ">RJ</option>
                                     <option value="ES">ES</option>
@@ -243,7 +271,7 @@
                                 </select>
                             
                             </div>
-
+                            {% if canal_selecionado == 'DTC' %}
                             <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
                                 <div class="">
                                     <strong>Material:</strong>
@@ -263,6 +291,8 @@
                                     <option  value="" selected disabled>Selecione uma variação</option>
                                 </select>
                             </div>
+                            
+                            {% endif %}
                         </div>
                     </div>
                     
@@ -271,7 +301,7 @@
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
                                     <strong>Quantidade:</strong>
-                                    <input type="number" id="quantity" min="1" value="1" />
+                                    <input type="number" id="quantity" min="1" value="1" {% if canal_selecionado == 'WHS - ESPECIALIZADOS' or canal_selecionado == 'WHS' %}readonly{% endif %} />
 
                             
                                 <!-- <button onclick="addProduct()" name="Avancar" value=2 >Adicionar</button> -->
@@ -282,26 +312,56 @@
                     </div>
                     
                     <div class="card">
-                        <h5 class="card-header">Materiais</h5>
+                        <h5 class="card-header">Resumo</h5>
                         <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table no-wrap p-table">
-                                    <thead class="bg-light">
-                                        <tr class="border-0">
-                                            <th class="border-0">Peça</th>
-                                            <th class="border-0">Variaçao</th>
-                                            <th class="border-0">Qtd</th>
-                                            <th class="border-0">Valor Unitario</th>
-                                            <th class="border-0">Sub-Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="taskList" >
-                                                                                         
-                                    </tbody>
-                                </table>
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <div class="table-responsive">
+                                        <table id="tabela-dados" class="table no-wrap p-table">
+                                            <thead class="bg-light">
+
+                                                <tr class="border-0">
+                                                {% if canal_selecionado == 'DTC' %}    
+                                                    <th class="border-0">Nome Projeto</th>
+                                                    <th class="border-0">Canal Selecionado</th>
+                                                    <th class="border-0">Store Concept</th>
+                                                    <th class="border-0">Segment</th>
+                                                    <th class="border-0">Execucao</th>
+                                                    <th class="border-0">Uf</th>
+                                                    <th class="border-0">Peça</th>
+                                                    <th class="border-0">Variaçao</th>
+                                                    <th class="border-0">Qtd</th>
+                                                    <th class="border-0">Valor Unitario</th>
+                                                    <th class="border-0">Sub-Total</th>
+                                                {%else%}
+                                                    <th class="border-0">Nome Projeto</th>
+                                                    <th class="border-0">Canal Selecionado</th>
+                                                    <th class="border-0">Rede</th>
+                                                    <th class="border-0">Uf</th>
+
+                                                {%endif%}    
+                                                </tr>
+                                            </thead>
+                                            <tbody id="taskList" >
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    {% if canal_selecionado == 'DTC' %}  
+                                    <span id="total">Total: R$ 0,00</span>
+                                    {%endif%}
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <button id="exportar-excel" class="btn-success btn-sm" type="submit" name="Avancar" value=2>
+                                <i class="fas fa-file-excel"></i> Export Excel
+                            </button>
                             </div>
                         </div>
-                        <div id="total">Total: R$ 0,00</div>
+                        
                     </div>
                                 
                     
@@ -317,7 +377,7 @@
                         
                     
                         
-                <form method="post">
+                <!-- <form method="post">
                     {% csrf_token %}
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <button class="btn btn-rounded btn-secondary " type="submit" name="Avancar" value=2>
@@ -325,8 +385,8 @@
                         </button>
                         
                     </div>      
-                </form>
-                {%endif%}
+                </form> -->
+            {%endif%}
                 
 
                 
@@ -350,18 +410,19 @@
     <script src="{% static 'cadastro_usuario/assets/vendor/jquery/jquery-3.3.1.min.js'%}"></script>
     <script src="{% static 'cadastro_usuario/assets/vendor/bootstrap/js/bootstrap.bundle.js'%}"></script>
     <script src="{% static 'cadastro_usuario/assets/vendor/select2/js/select2.min.js'%}"></script>
+    <script src="{% static 'cadastro_usuario/assets/vendor/xlsx_export/js/xlsx.full.min.js'%}"></script>
     <script src="{% static 'cadastro_usuario/assets/libs/js/main-js.js'%}"></script>
     <script src="{% static 'cadastro_usuario/assets/libs/js/jquery.multiselect.js'%}"></script>
-    <script src="{% static 'cadastro_usuario/assets/libs/js/jquery.multiselect.js'%}"></script>
+  
 <script>
 $(function() {
 
 $('select[multiple].active.3col').multiselect({
   columns: 2,
-  placeholder: 'Select States',
+  placeholder: 'selecione uma opção',
   search: true,
   searchOptions: {
-      'default': 'Search States'
+      'default': 'Pesquisar'
   },
   selectAll: true
 });
@@ -386,6 +447,7 @@ $('select[multiple].active.3col').multiselect({
         {% endfor %}
     ];
     function updateOptions() {
+    
     const productList = document.getElementById('productList');
     const variationsList = document.getElementById('variationsList');
 
@@ -433,63 +495,121 @@ $('select[multiple].active.3col').multiselect({
     // Função para adicionar um produto com quantidade ao carrinho
     function addProduct() {
         let productValue = 0;
-        const productList = document.getElementById('productList');
-        const variationsList = document.getElementById('variationsList');
-        const quantityInput = document.getElementById('quantity');
+        const NomeProjeto = document.getElementById('NomeProjeto').value;
+        const CanalSelecionado = document.getElementById('CanalSelecionado').value;
         const taskList = document.getElementById('taskList');
-
-        const selectedOption = productList.options[productList.selectedIndex];
-        const selectedOption_variacao = variationsList.options[variationsList.selectedIndex];
-        const productName = selectedOption.textContent;
-        /* const productValue = parseFloat(selectedOption.value); */
-        const quantity = parseInt(quantityInput.value);
-        const productId = selectedOption.value;
-        const product_variacao = selectedOption_variacao.value;
-
-        if (quantity <= 0) {
-            alert('A quantidade deve ser maior que zero!');
-            return;
-        }
+        const Uf = document.getElementById('Uf');
+        const UftSelected = Array.from(Uf.selectedOptions).map(option => option.value);
         
-        const product = todosOsCardapios.find(p => p.nome === productId && p.variacao === product_variacao);
-        const price = parseFloat(product.preco_uni);
-        const variacao = product.variacao;
-        if(quantity <= 10){
-            productValue = parseFloat(product.preco_uni);
+        
+        
+        if(CanalSelecionado === 'DTC'){
+            const StoreConcept = document.getElementById('StoreConcept');
+            const StoreConceptSelected = Array.from(StoreConcept.selectedOptions).map(option => option.value);
+
+            const Segment = document.getElementById('Segment');
+            const SegmentSelected = Array.from(Segment.selectedOptions).map(option => option.value);
+
+            const Execucao = document.getElementById('Execucao');
+            const ExecucaoSelected = Array.from(Execucao.selectedOptions).map(option => option.value);
+
             
-        }
-        else if(quantity <= 30){
-            productValue = parseFloat(product.Preco_maior_10);
-        }
-        else if(quantity <= 50){
-            productValue = parseFloat(product.Preco_maior_30);
-        }
-        else if(quantity > 50){
-            productValue = parseFloat(product.Preco_maior_50);
-        }
-        const totalPrice = productValue * quantity;
 
-        // Criar item na lista
-        const taskItem = document.createElement('tr');
-        taskItem.className = 'task';
-        taskItem.innerHTML = `
-                       
-            <tr name="materiais">
-                <td>${productName}</td>
-                <td>${variacao}</td>
-                <td>${quantity} </td>
-                <td>${productValue}</td>
-                <td>${totalPrice}</td>
-                <td><a href="#" onclick="removeTask(this, ${totalPrice})" class="btn btn-outline-danger btn-xs">Remover</a></td>
-            </tr>
-        `;
 
-        // Adicionar à lista
-        taskList.appendChild(taskItem);
+            const productList = document.getElementById('productList');
+            const variationsList = document.getElementById('variationsList');
+            const quantityInput = document.getElementById('quantity');
 
-        // Atualizar total
-        total += totalPrice;
-        updateTotal();
+
+            const selectedOption = productList.options[productList.selectedIndex];
+            const selectedOption_variacao = variationsList.options[variationsList.selectedIndex];
+            const productName = selectedOption.textContent;
+            /* const productValue = parseFloat(selectedOption.value); */
+            const quantity = parseInt(quantityInput.value);
+            const productId = selectedOption.value;
+            const product_variacao = selectedOption_variacao.value;
+        
+        
+
+            if (quantity <= 0 ) {
+                alert('A quantidade deve ser maior que zero!');
+                return;
+            }
+        
+            const product = todosOsCardapios.find(p => p.nome === productId && p.variacao === product_variacao);
+            const price = parseFloat(product.preco_uni);
+            const variacao = product.variacao;
+            if(quantity <= 10){
+                productValue = parseFloat(product.preco_uni);
+
+            }
+            else if(quantity <= 30){
+                productValue = parseFloat(product.Preco_maior_10);
+            }
+            else if(quantity <= 50){
+                productValue = parseFloat(product.Preco_maior_30);
+            }
+            else if(quantity > 50){
+                productValue = parseFloat(product.Preco_maior_50);
+            }
+            const totalPrice = productValue * quantity;
+
+            // Criar item na lista
+            const taskItem = document.createElement('tr');
+            taskItem.className = 'task';
+
+
+
+            taskItem.innerHTML = `
+
+                <tr name="materiais">
+                    <td>${NomeProjeto}</td>
+                    <td>${CanalSelecionado}</td>
+                    <td>${StoreConceptSelected.join(', ')}</td>
+                    <td>${SegmentSelected.join(', ')}</td>
+                    <td>${ExecucaoSelected.join(', ')}</td>
+                    <td>${UftSelected.join(', ')}</td>
+                    <td>${productName}</td>
+                    <td>${variacao}</td>
+                    <td>${quantity} </td>
+                    <td>${productValue}</td>
+                    <td>${totalPrice}</td>
+                    <td><a href="#" onclick="removeTask(this, ${totalPrice})" class="btn btn-outline-danger btn-xs">Remover</a></td>
+                </tr>
+            `;
+
+            // Adicionar à lista
+            taskList.appendChild(taskItem);
+
+            // Atualizar total
+            total += totalPrice;
+            
+            updateTotal();;
+        }
+        if(CanalSelecionado === 'WHS' || CanalSelecionado === 'WHS - ESPECIALIZADOS'  ){
+            const Rede = document.getElementById('Rede');
+            const RedeSelected = Array.from(Rede.selectedOptions).map(option => option.value);
+
+            // Criar item na lista
+            const taskItem = document.createElement('tr');
+            taskItem.className = 'task';
+
+
+
+            taskItem.innerHTML = `
+
+                <tr name="materiais">
+                    <td>${NomeProjeto}</td>
+                    <td>${CanalSelecionado}</td>
+                    <td><td>${RedeSelected.join(', ')}</td></td>
+                    <td>${UftSelected}</td>
+                    <td><a href="#" onclick="removeTask(this, 0)" class="btn btn-outline-danger btn-xs">Remover</a></td>
+                </tr>
+            `;
+
+            // Adicionar à lista
+            taskList.appendChild(taskItem);
+        }
     }
 
         // Função para remover uma linha e atualizar o total
@@ -516,6 +636,24 @@ $('select[multiple].active.3col').multiselect({
             placeholder: "Selecione um canal",
             allowClear: true // Permite limpar a seleção
         });
+    });
+  </script>
+
+
+<script>
+    document.getElementById('exportar-excel').addEventListener('click', () => {
+        // Obter a tabela HTML
+        const tabela = document.getElementById('tabela-dados');
+  
+        // Converter a tabela para uma planilha
+        const planilha = XLSX.utils.table_to_sheet(tabela);
+  
+        // Criar um novo workbook e adicionar a planilha
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, planilha, 'Dados');
+  
+        // Gerar o arquivo Excel e baixá-lo
+        XLSX.writeFile(workbook, 'dados.xlsx');
     });
   </script>
 
