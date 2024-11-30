@@ -43,7 +43,6 @@ def cad_projetos(request):
     # Contexto inicial
     context = {
         'btn_avancar': btn_avancar,
-        'total':total,
         'todos_os_cardapios':todos_os_cardapios,
         'pecas':pecas,
     }
@@ -60,7 +59,6 @@ def cad_projetos(request):
                 'nome_projeto': nome_projeto,
                 'canal_selecionado': canal_selecionado,
                 'redes_selecionadas': redes_selecionadas,
-                'total':total,
                 'todos_os_cardapios':todos_os_cardapios,
                 'pecas':pecas,
             })
@@ -76,20 +74,63 @@ def cad_projetos(request):
                 'nome_projeto': nome_projeto,
                 'canal_selecionado': canal_selecionado,
                 'redes_selecionadas': redes_selecionadas,
-                'total':total,
                 'todos_os_cardapios':todos_os_cardapios,
                 'materiais':materiais,
             })
             return render(request, 'Cadastro_Projeto.html', context)
 
-        elif btn_avancar == 3:
-            pass
+        
     
     # Se o método não for POST ou não cair em nenhuma condição
     return render(request, 'Cadastro_Projeto.html', context)
         
 
-          
+def cad_campanha(request):
+    # Verifica o valor do botão avançar
+    btn_avancar = int(request.POST.get('Avancar', 1))
+    todos_os_cardapios = model_db_cardapio.objects.all()
+    pecas = todos_os_cardapios.values('peca').distinct()
+    # Contexto inicial
+    context = {
+        'btn_avancar': btn_avancar,
+        'todos_os_cardapios':todos_os_cardapios,
+        'pecas':pecas,
+    }
+
+    if request.method == 'POST':
+        if btn_avancar == 1:
+            # Etapa 2: Recebe dados e atualiza o contexto
+            nome_projeto = request.POST.get('nome_projeto', '')
+            canal_selecionado = request.POST.get('canal', '')
+            redes_selecionadas = request.POST.getlist('list')
+            
+
+            context.update({
+                'nome_projeto': nome_projeto,
+                'canal_selecionado': canal_selecionado,
+                'redes_selecionadas': redes_selecionadas,
+                'todos_os_cardapios':todos_os_cardapios,
+                'pecas':pecas,
+            })
+            return render(request, 'Cadastro_Campanha.html', context)
+        
+        elif btn_avancar == 2:
+            # Etapa 2: Recebe dados e atualiza o contexto
+            nome_projeto = request.POST.get('nome_projeto', '')
+            canal_selecionado = request.POST.get('canal', '')
+            redes_selecionadas = request.POST.getlist('list')
+            materiais = request.POST.getlist('materiais')
+            context.update({
+                'nome_projeto': nome_projeto,
+                'canal_selecionado': canal_selecionado,
+                'redes_selecionadas': redes_selecionadas,
+                'todos_os_cardapios':todos_os_cardapios,
+                'materiais':materiais,
+            })
+            return render(request, 'Cadastro_Campanha.html', context)        
+    
+    # Se o método não for POST ou não cair em nenhuma condição
+    return render(request, 'Cadastro_Campanha.html', context)          
         
 
         

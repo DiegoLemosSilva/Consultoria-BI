@@ -70,17 +70,17 @@
                                 <div id="submenu-2" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="">Projeto <span class="badge badge-secondary"></span></a>
+                                            <a class="nav-link" href="{%url 'cad_projetos'%}">Projeto <span class="badge badge-secondary"></span></a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="{%url 'cad_campanha'%}">Campanha <span class="badge badge-secondary"></span></a>
+                                            <a class="nav-link" href="">Campanha <span class="badge badge-secondary"></span></a>
                                         </li>
                                         
                                         
                                     </ul>
                                 </div>
                             </li>
-                             
+                              
                         </ul>
                     </div>
                 </nav>
@@ -100,14 +100,14 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
-                            <h2 class="pageheader-title">Cadastrar Projeto</h2>
+                            <h2 class="pageheader-title">Cadastrar Campanha</h2>
                             
                             <div class="page-breadcrumb">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Cadastros</a></li>
-                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Projeto</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Novo Projeto</li>
+                                        <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Campanha</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Nova Campanha</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -129,8 +129,8 @@
                                 <div class="form-group">
                                     <div class="form-row">
                                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                                            <label for="input-select">Nome Projeto</label>
-                                            <input type="text" class="form-control" id="validationCustom01" placeholder="Nome do Projeto" value="{{nome_projeto}}" required="" name="nome_projeto">
+                                            <label for="input-select">Nome Campanha</label>
+                                            <input type="text" class="form-control" id="validationCustom01" placeholder="Nome da Campanha" value="{{nome_projeto}}" required="" name="nome_projeto">
                                         </div>
                                         <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
                                             <label for="input-select">Canal</label>
@@ -160,7 +160,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                <label for="input-select">Nome Projeto selecionado</label>
+                                <label for="input-select">Nome Campanha selecionado</label>
                                 <input type="text" class="form-control" id="NomeProjeto" placeholder="" value="{{nome_projeto}}" required="" name="nome_projeto" readonly>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
@@ -289,12 +289,62 @@
                                     <input type="number" id="quantity" min="1" value="1" {% if canal_selecionado == 'WHS - ESPECIALIZADOS' or canal_selecionado == 'WHS' %}readonly{% endif %} />
 
                             
-                                <!-- <button onclick="addProduct()" name="Avancar" value=2 >Adicionar</button> -->
+
                             
-                                <a href="#" onclick="addProduct()" class="btn btn-outline-success btn-xs">ADD</a>
+                                <a href="#" onclick="addProduct(1)" class="btn btn-outline-success btn-xs">ADD</a>
                             </div>
                         </div>
                     </div>
+
+                    {% if canal_selecionado == 'DTC' %}
+                    <div class="card-body border-top">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <span>* caso seja nessesario um material personalizado favor preencher formulario abaixo</span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="card-body border-top">
+                        
+
+                        <div class="row">
+                            
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <label for="input-select">Material Personalizado</label>
+                                <input type="text" class="form-control" id="NomeMaterialPersonalizado"  required="" >
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                <label for="input-select">Altura</label>
+                                <input id="AlturaMaterialPersonalizado" type="number" class="form-control" placeholder="CM:">
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                <label for="input-select">Largura</label>
+                                <input id="LarguraMaterialPersonalizado" type="number" class="form-control" placeholder="CM:">
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12">
+                                <label for="input-select">Comprimento</label>
+                                <input id="ComprimentoMaterialPersonalizado" type="number" class="form-control" placeholder="CM:">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+                                    <strong>Quantidade:</strong>
+                                    <input type="number" id="quantity" min="1" value="1" />
+
+                            
+
+                            
+                                <a href="#" onclick="addProduct(2)" class="btn btn-outline-success btn-xs">ADD</a>
+                            </div>
+                        </div>
+                    </div>
+                    {%endif%}
                     
                     <div class="card">
                         <h5 class="card-header">Resumo</h5>
@@ -307,7 +357,7 @@
 
                                                 <tr class="border-0">
                                                 {% if canal_selecionado == 'DTC' %}    
-                                                    <th class="border-0">Nome Projeto</th>
+                                                    <th class="border-0">Nome Campanha</th>
                                                     <th class="border-0">Canal Selecionado</th>
                                                     <th class="border-0">Store Concept</th>
                                                     <th class="border-0">Segment</th>
@@ -319,7 +369,7 @@
                                                     <th class="border-0">Valor Unitario</th>
                                                     <th class="border-0">Sub-Total</th>
                                                 {%else%}
-                                                    <th class="border-0">Nome Projeto</th>
+                                                    <th class="border-0">Nome Campanha</th>
                                                     <th class="border-0">Canal Selecionado</th>
                                                     <th class="border-0">Rede</th>
                                                     <th class="border-0">Uf</th>
@@ -478,7 +528,8 @@ $('select[multiple].active.3col').multiselect({
     });
 }
     // Função para adicionar um produto com quantidade ao carrinho
-    function addProduct() {
+    function addProduct(button) {
+        const tipo = button
         let productValue = 0;
         const NomeProjeto = document.getElementById('NomeProjeto').value;
         const CanalSelecionado = document.getElementById('CanalSelecionado').value;
@@ -489,87 +540,119 @@ $('select[multiple].active.3col').multiselect({
         
         
         if(CanalSelecionado === 'DTC'){
-            const StoreConcept = document.getElementById('StoreConcept');
-            const StoreConceptSelected = Array.from(StoreConcept.selectedOptions).map(option => option.value);
+            
+                const StoreConcept = document.getElementById('StoreConcept');
+                const StoreConceptSelected = Array.from(StoreConcept.selectedOptions).map(option => option.value);
 
-            const Segment = document.getElementById('Segment');
-            const SegmentSelected = Array.from(Segment.selectedOptions).map(option => option.value);
+                const Segment = document.getElementById('Segment');
+                const SegmentSelected = Array.from(Segment.selectedOptions).map(option => option.value);
 
-            const Execucao = document.getElementById('Execucao');
-            const ExecucaoSelected = Array.from(Execucao.selectedOptions).map(option => option.value);
+                const Execucao = document.getElementById('Execucao');
+                const ExecucaoSelected = Array.from(Execucao.selectedOptions).map(option => option.value);
 
+
+
+            if(tipo === 1){
+                const productList = document.getElementById('productList');
+                const variationsList = document.getElementById('variationsList');
+                const quantityInput = document.getElementById('quantity');
+
+
+                const selectedOption = productList.options[productList.selectedIndex];
+                const selectedOption_variacao = variationsList.options[variationsList.selectedIndex];
+                const productName = selectedOption.textContent;
+                /* const productValue = parseFloat(selectedOption.value); */
+                const quantity = parseInt(quantityInput.value);
+                const productId = selectedOption.value;
+                const product_variacao = selectedOption_variacao.value;
+            
             
 
-
-            const productList = document.getElementById('productList');
-            const variationsList = document.getElementById('variationsList');
-            const quantityInput = document.getElementById('quantity');
-
-
-            const selectedOption = productList.options[productList.selectedIndex];
-            const selectedOption_variacao = variationsList.options[variationsList.selectedIndex];
-            const productName = selectedOption.textContent;
-            /* const productValue = parseFloat(selectedOption.value); */
-            const quantity = parseInt(quantityInput.value);
-            const productId = selectedOption.value;
-            const product_variacao = selectedOption_variacao.value;
-        
-        
-
-            if (quantity <= 0 ) {
-                alert('A quantidade deve ser maior que zero!');
-                return;
-            }
-        
-            const product = todosOsCardapios.find(p => p.nome === productId && p.variacao === product_variacao);
-            const price = parseFloat(product.preco_uni);
-            const variacao = product.variacao;
-            if(quantity <= 10){
-                productValue = parseFloat(product.preco_uni);
-
-            }
-            else if(quantity <= 30){
-                productValue = parseFloat(product.Preco_maior_10);
-            }
-            else if(quantity <= 50){
-                productValue = parseFloat(product.Preco_maior_30);
-            }
-            else if(quantity > 50){
-                productValue = parseFloat(product.Preco_maior_50);
-            }
-            const totalPrice = productValue * quantity;
-
-            // Criar item na lista
-            const taskItem = document.createElement('tr');
-            taskItem.className = 'task';
-
-
-
-            taskItem.innerHTML = `
-
-                <tr name="materiais">
-                    <td>${NomeProjeto}</td>
-                    <td>${CanalSelecionado}</td>
-                    <td>${StoreConceptSelected.join(', ')}</td>
-                    <td>${SegmentSelected.join(', ')}</td>
-                    <td>${ExecucaoSelected.join(', ')}</td>
-                    <td>${UftSelected.join(', ')}</td>
-                    <td>${productName}</td>
-                    <td>${variacao}</td>
-                    <td>${quantity} </td>
-                    <td>${productValue}</td>
-                    <td>${totalPrice}</td>
-                    <td><a href="#" onclick="removeTask(this, ${totalPrice})" class="btn btn-outline-danger btn-xs">Remover</a></td>
-                </tr>
-            `;
-
-            // Adicionar à lista
-            taskList.appendChild(taskItem);
-
-            // Atualizar total
-            total += totalPrice;
+                if (quantity <= 0 ) {
+                    alert('A quantidade deve ser maior que zero!');
+                    return;
+                }
             
-            updateTotal();;
+                const product = todosOsCardapios.find(p => p.nome === productId && p.variacao === product_variacao);
+                const price = parseFloat(product.preco_uni);
+                const variacao = product.variacao;
+                if(quantity <= 10){
+                    productValue = parseFloat(product.preco_uni);
+
+                }
+                else if(quantity <= 30){
+                    productValue = parseFloat(product.Preco_maior_10);
+                }
+                else if(quantity <= 50){
+                    productValue = parseFloat(product.Preco_maior_30);
+                }
+                else if(quantity > 50){
+                    productValue = parseFloat(product.Preco_maior_50);
+                }
+                const totalPrice = productValue * quantity;
+
+                // Criar item na lista
+                const taskItem = document.createElement('tr');
+                taskItem.className = 'task';
+
+
+
+                taskItem.innerHTML = `
+
+                    <tr name="materiais">
+                        <td>${NomeProjeto}</td>
+                        <td>${CanalSelecionado}</td>
+                        <td>${StoreConceptSelected.join(', ')}</td>
+                        <td>${SegmentSelected.join(', ')}</td>
+                        <td>${ExecucaoSelected.join(', ')}</td>
+                        <td>${UftSelected.join(', ')}</td>
+                        <td>${productName}</td>
+                        <td>${variacao}</td>
+                        <td>${quantity} </td>
+                        <td>${productValue}</td>
+                        <td>${totalPrice}</td>
+                        <td><a href="#" onclick="removeTask(this, ${totalPrice})" class="btn btn-outline-danger btn-xs">Remover</a></td>
+                    </tr>
+                `;
+
+                // Adicionar à lista
+                taskList.appendChild(taskItem);
+
+                // Atualizar total
+                total += totalPrice;
+                
+                updateTotal();;
+            }
+            else if(tipo === 2){
+                const NomeMaterialPersonalizado = document.getElementById('NomeMaterialPersonalizado').value;
+                const AlturaMaterialPersonalizado = document.getElementById('AlturaMaterialPersonalizado').value;
+                const LarguraMaterialPersonalizado = document.getElementById('LarguraMaterialPersonalizado').value;
+                const ComprimentoMaterialPersonalizado = document.getElementById('ComprimentoMaterialPersonalizado').value;
+                // Criar item na lista
+                const taskItem = document.createElement('tr');
+                taskItem.className = 'task';
+
+
+
+                taskItem.innerHTML = `
+
+                    <tr name="materiais">
+                        <td>${NomeProjeto}</td>
+                        <td>${CanalSelecionado}</td>
+                        <td>${StoreConceptSelected.join(', ')}</td>
+                        <td>${SegmentSelected.join(', ')}</td>
+                        <td>${ExecucaoSelected.join(', ')}</td>
+                        <td>${UftSelected.join(', ')}</td>
+                        <td>${NomeMaterialPersonalizado}</td>
+                        <td>${NomeMaterialPersonalizado}: ${AlturaMaterialPersonalizado}cm X ${LarguraMaterialPersonalizado}cm X ${ComprimentoMaterialPersonalizado}cm</td>
+                        <td>0 </td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td><a href="#" onclick="removeTask(this, 0)" class="btn btn-outline-danger btn-xs">Remover</a></td>
+                    </tr>
+                `;
+                taskList.appendChild(taskItem);
+            }
         }
         if(CanalSelecionado === 'WHS' || CanalSelecionado === 'WHS - ESPECIALIZADOS'  ){
             const Rede = document.getElementById('Rede');
