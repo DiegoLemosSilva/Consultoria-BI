@@ -335,7 +335,7 @@
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 
                                     <strong>Quantidade:</strong>
-                                    <input type="number" id="quantity" min="1" value="1" />
+                                    <input type="number" id="quantityMaterialPersonalizado" min="1" value="1" />
 
                             
 
@@ -628,6 +628,7 @@ $('select[multiple].active.3col').multiselect({
                 const AlturaMaterialPersonalizado = document.getElementById('AlturaMaterialPersonalizado').value;
                 const LarguraMaterialPersonalizado = document.getElementById('LarguraMaterialPersonalizado').value;
                 const ComprimentoMaterialPersonalizado = document.getElementById('ComprimentoMaterialPersonalizado').value;
+                const quantityMaterialPersonalizado = document.getElementById('quantityMaterialPersonalizado').value;
                 // Criar item na lista
                 const taskItem = document.createElement('tr');
                 taskItem.className = 'task';
@@ -645,7 +646,7 @@ $('select[multiple].active.3col').multiselect({
                         <td>${UftSelected.join(', ')}</td>
                         <td>${NomeMaterialPersonalizado}</td>
                         <td>${NomeMaterialPersonalizado}: ${AlturaMaterialPersonalizado}cm X ${LarguraMaterialPersonalizado}cm X ${ComprimentoMaterialPersonalizado}cm</td>
-                        <td>0 </td>
+                        <td>${quantityMaterialPersonalizado}</td>
                         <td>0</td>
                         <td>0</td>
                         <td><a href="#" onclick="removeTask(this, 0)" class="btn btn-outline-danger btn-xs">Remover</a></td>
