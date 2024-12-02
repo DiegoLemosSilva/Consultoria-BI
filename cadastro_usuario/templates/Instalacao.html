@@ -66,32 +66,21 @@
                                 <div id="submenu-2" class="collapse submenu" style="">
                                     <ul class="nav flex-column">
                                         <li class="nav-item">
-                                            <a class="nav-link" href="">Campanhas <span class="badge badge-secondary"></span></a>
+                                            <a class="nav-link" href="{%url 'cad_projetos'%}">Projeto <span class="badge badge-secondary"></span></a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="">Lojas</a>
+                                            <a class="nav-link" href="{%url 'cad_campanha'%}">Campanha <span class="badge badge-secondary"></span></a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="">Produtos</a>
-                                        </li>
+                                        
                                         
                                     </ul>
                                 </div>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fab fa-searchengin"></i>CHECK IN</a>
-                                <div id="submenu-3" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="">Instalação</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="">Desisntalação</a>
-                                        </li>
-                                        
-                                    </ul>
-                                </div>
-                            </li>  
+                            <li class="nav-item ">
+                                <a class="nav-link " href="{%url 'checkin'%}" ><i class="far fa-file-image"></i>Chekin <span class="badge badge-success">6</span></a>
+                                
+                            </li>
+                              
                         </ul>
                     </div>
                 </nav>
@@ -117,9 +106,14 @@
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item">Consultar</li>
                                         <li class="breadcrumb-item">Check In</li>
-                                        <li class="breadcrumb-item">Instalação</li>
                                         {% if tipo != '' %}
                                             <li class="breadcrumb-item">{{tipo}}</li>
+                                        {% endif %}
+                                        {% if tipo_servico != '' %}
+                                            <li class="breadcrumb-item">{{ tipo_servico|capfirst }}</li>
+                                        {% endif %}
+                                        {% if nome_canal != '' %}
+                                            <li class="breadcrumb-item">{{nome_canal|capfirst}}</li>
                                         {% endif %}
                                         
                                         
@@ -154,7 +148,27 @@
                                                     <option {% if tipo == 'Projeto' %}selected{% endif %}>Projeto</option>
                                                     <option {% if tipo == 'Abertura' %}selected{% endif %}>Abertura</option>
                                                 </select>
+                                                
                                             </div>
+
+                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                <label for="input-select">Tipo Serviço</label>
+                                                <select class="form-control" id="input-select" name="nome_tipo_servico">
+                                                    <option {% if tipo_servico == 'INSTALAÇÃO' %}selected{% endif %}>INSTALAÇÃO</option>
+                                                    <option {% if tipo_servico == 'DESISNTALAÇÃO' %}selected{% endif %}>DESISNTALAÇÃO</option>
+                                                    
+                                                </select>
+                                            </div>
+                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                                <label for="input-select">Canal</label>
+                                                <select class="form-control" id="input-select" name="canal">
+                                                    <option {% if nome_canal == 'WHS' %}selected{% endif %} >WHS </option>
+                                                    <option {% if nome_canal == 'DTC' %}selected{% endif %} >DTC </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-row">
                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
                                                 <button class="btn btn-rounded btn-secondary " type="submit" name="pesquisar" value="Campanha">
                                                     <i class="fab fa-searchengin"></i> Carregar
@@ -169,11 +183,11 @@
                                                 <label for="input-select">selecione {{tipo}}</label>
                                                 <select class="form-control" id="input-select" name="nome_campanha">
                                                     <option> selecione </option>
-                                                    {% for Campanha in campanha %}
-                                                        <option {% if Campanha.nome_campanha == nome_campanha %}selected{% endif %}> {{ Campanha.nome_campanha }} </option>
+                                                    {% for campanha in campanhas %}
+                                                        <option {% if campanha.nome_campanha == nome_campanha %}selected{% endif %}> {{ campanha.nome_campanha }} </option>
                                                 
                                                     {% empty %}
-                                                        <option>Nenhumna informação carregada</option>
+                                                        <option></option>
                                                     {% endfor %}
                                                 </select>
                                             </div>
@@ -190,14 +204,7 @@
                                                 </select>
                                             </div>
                                         
-                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                                                <label for="input-select">Canal</label>
-                                                <select class="form-control" id="input-select">
-                                                    <option > All </option>
-                                                    <option>WHS </option>
-                                                    <option>DTC </option>
-                                                </select>
-                                            </div>
+                                    
                                         </div>
                                     {% elif tipo == 'Abertura'%}
                                         <div class="form-group">
@@ -265,7 +272,7 @@
             </div>
         </div>    
     </div>
-    
+        
 
 
     

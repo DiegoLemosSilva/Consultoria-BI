@@ -1,35 +1,43 @@
 # views.py
 from django.shortcuts import render, redirect
-from .forms import CheckinI,model_db_campanha,model_db_cardapio
+from .models import model_db_CheckinI,model_db_cardapio,upload_photo_chekin
+from .forms import PhotoFormCheckin
 from django.contrib import messages  # Importando o sistema de mensagens
 from django.http import HttpResponse
 
-def instalacao (request):
+def checkin (request):
 
     
 
     if request.method == 'GET':
 
         tipo = request.GET.get('tipo', '')
-        
-        campanha = model_db_campanha.get_by_campanha(tipo)         
-            
-        nome_campanha = request.GET.get('nome_campanha', '')
+        tipo_servico = request.GET.get('nome_tipo_servico', '')
+        nome_canal = request.GET.get('canal', '')
+        ListCheckinI = model_db_CheckinI.get_by_instalacao(tipo,tipo_servico,nome_canal,'','')
+        campanhas = ListCheckinI.values('nome_campanha').distinct()
+                
+           
+        nome_campanha = request.GET.get('nome_campanha', 'default')
         produto = request.GET.get('produto', '')
             
 
-        if produto == 'All':           
-            chekin = CheckinI.get_by_instalacao('INSTALAÇÃO',nome_campanha,'')
+        if produto == 'All' :           
+            chekin = model_db_CheckinI.get_by_instalacao(tipo,tipo_servico,nome_canal,nome_campanha,'')
         else:
-            chekin = CheckinI.get_by_instalacao('INSTALAÇÃO',nome_campanha,produto)
+            chekin = model_db_CheckinI.get_by_instalacao(tipo,tipo_servico,nome_canal,nome_campanha,produto)
                 # Obtém todos os registros do modelo Escrito
 
         context = {
+            'ListCheckinI':ListCheckinI,
+            'tipo_servico':tipo_servico,
             'chekin': chekin,
             'nome_campanha':nome_campanha,
             'nome_produto':produto,
-            'campanha':campanha,
+            'campanhas':campanhas,
             'tipo':tipo,
+            'nome_canal':nome_canal
+            
             
             }
         return render(request, 'Instalacao.html', context)
@@ -133,7 +141,15 @@ def cad_campanha(request):
     return render(request, 'Cadastro_Campanha.html', context)          
         
 
-        
+def upload_photo(request):
+    if request.method == 'POST':
+        form = PhotoFormCheckin(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            
+    else:
+        form = PhotoFormCheckin()
+    return render(request, 'uploadcheckin.html', {'form': form})     
         
             
 

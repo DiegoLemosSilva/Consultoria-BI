@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-s!n42c-j3vy@hiv_q7gud40yrqaqw@ny$$^de5x1_gkzi&s31^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -129,3 +129,6 @@ STATICFILES_DIRS = []
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_URL = '/cadastro_usuario/assets/images/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/cadastro_usuario/assets/images/')

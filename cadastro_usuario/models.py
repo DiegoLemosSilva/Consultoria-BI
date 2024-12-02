@@ -1,16 +1,18 @@
 from django.db import models
+import os
 
-class CheckinI(models.Model):
+class model_db_CheckinI(models.Model):
     
     chekin_id = models.AutoField(primary_key=True)  # Define chekin_id como a chave primária
-
     estabelecimento = models.TextField(db_column='estabelecimento')
     img =  models.TextField(db_column='img')
     cidade = models.TextField(db_column='cidade')
     estado = models.TextField(db_column='estado')
-    tipo = models.TextField(db_column='tipo')
-    fk_campanha = models.IntegerField(db_column='fk_campanha')
+    tipo_servico = models.TextField(db_column='tipo_servico')
+    nome_campanha = models.IntegerField(db_column='nome_campanha')
     nome_produto = models.TextField(db_column='nome_produto')
+    tipo = models.TextField(db_column='tipo')
+    canal = models.TextField(db_column='canal')
 
     class Meta:
         db_table = '"br_addidas"."chekin"'  # Nome da tabela existente
@@ -18,24 +20,66 @@ class CheckinI(models.Model):
 
 
     @classmethod
-    def get_by_instalacao(cls,nome_tipo, fk_campanha,nome_produto):
+    def get_by_instalacao(cls,tipo,nome_tipo_servico,canal, nome_campanha,nome_produto):
         # Verifique se ambos os filtros têm valores antes de realizar a consulta
-        if fk_campanha and nome_tipo:
+        if tipo and nome_tipo_servico and canal and nome_campanha == '':
             return cls.objects.using('default').filter(
-                fk_campanha__icontains=fk_campanha,
+                tipo__icontains=tipo,
+                tipo_servico__icontains=nome_tipo_servico,
+                canal__icontains=canal,
+            )
+        elif nome_campanha and nome_tipo_servico and tipo and canal:
+            return cls.objects.using('default').filter(
+                tipo__icontains=tipo,
+                nome_campanha__icontains=nome_campanha,
                 nome_produto__icontains=nome_produto,
-                tipo__icontains=nome_tipo,
+                tipo_servico__icontains=nome_tipo_servico,
+                canal__icontains=canal,
+
             )
         else:
             # Caso algum filtro seja None ou vazio, retorne um queryset vazio
             return cls.objects.none()
     
     def __str__(self):
-        return self.nome_produto
+        return chekin(
+            {
+                "nome_produto":self.nome_produto,
+                "nome_campanha":self.nome_campanha
+                }
+            )
      
-        
 
-class model_db_campanha(models.Model):
+
+def custom_upload_to(instance, filename):
+    ext = os.path.splitext(filename)[1]  # Obtém a extensão do arquivo
+    form_value = f"{instance.estabelecimento}'_'{instance.cidade}'_'{instance.estado}"  # O valor vindo do campo 'title' no formulário
+    new_name = f"{form_value.replace(' ', '_')}{ext}"  # Define o novo nome
+    return f"{new_name}"
+
+    
+
+class upload_photo_chekin(models.Model):
+    chekin_id = models.AutoField(primary_key=True)  # Define chekin_id como a chave primária
+    estabelecimento = models.TextField(db_column='estabelecimento')
+    img =  models.ImageField(upload_to=custom_upload_to)
+    cidade = models.TextField(db_column='cidade')
+    estado = models.TextField(db_column='estado')
+    tipo_servico = models.TextField(db_column='tipo_servico')
+    nome_campanha = models.IntegerField(db_column='nome_campanha')
+    nome_produto = models.TextField(db_column='nome_produto')
+    tipo = models.TextField(db_column='tipo')
+    canal = models.TextField(db_column='canal')
+
+    class Meta:
+        db_table = '"br_addidas"."chekin"'  # Nome da tabela existente
+        managed = False  # Impede que o Django gerencie a tabela
+    def __str__(self):
+        return self.title
+
+
+
+""" class model_db_campanha(models.Model):
 
     id_campanha = models.AutoField(primary_key=True)
     nome_campanha = models.CharField(db_column='nome_campanha')
@@ -67,7 +111,7 @@ class model_db_projeto(models.Model):
 
     class Meta:
         db_table = '"br_addidas"."projeto"'  # Nome da tabela existente
-        managed = False  # Impede que o Django gerencie a tabela
+        managed = False  # Impede que o Django gerencie a tabela """
 
 class model_db_cardapio(models.Model):
     id_material = models.AutoField(primary_key=True)
