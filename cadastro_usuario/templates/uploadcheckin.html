@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-br">
  
 <head>
     {% load static %}
@@ -16,7 +16,14 @@
     <link rel="stylesheet" href="{% static 'cadastro_usuario/assets/vendor/fonts/fontawesome/css/fontawesome-all.css'%}">
     <link rel="stylesheet" href="{% static 'cadastro_usuario/assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css'%}">
     <link rel="stylesheet" href="{% static 'cadastro_usuario/assets/vendor/select2/css/select2.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     
+    <style>
+        .datepicker,
+        .ui-datepicker {
+            z-index: 9999 !important;  /* Garante que o Datepicker sobreponha */
+        }
+    </style>    
 </head>
 <body>
     
@@ -70,7 +77,10 @@
                                             <a class="nav-link" href="{%url 'cad_projetos'%}">Projeto <span class="badge badge-secondary"></span></a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="">Campanha <span class="badge badge-secondary"></span></a>
+                                            <a class="nav-link" href="{%url 'cad_campanha'%}">Campanha <span class="badge badge-secondary"></span></a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{%url 'upload_photo'%}">Upload Checkin <span class="badge badge-secondary"></span></a>
                                         </li>
                                         
                                         
@@ -125,46 +135,109 @@
                 <!-- ============================================================== -->
                 <div class="card">
                     <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
                     <div class="card-body">
                         <div class="row">
-                        
-                            {% csrf_token %}
                             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
 
-                                <strong>Nome Campanha:</strong>
-                                {{ form.nome_campanha }}
+                                <strong>Data:</strong>
+                                {{ form.data }}
                             </div>
                             <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+
+                                <strong>Protocolo:</strong>
+                                {{ form.protocolo }}
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                <strong for="input-select">Tipo Serviço:</strong>
+                                <select class="form-control" id="input-select" name="nome_tipo_servico">
+                                    <option>INSTALAÇÃO</option>
+                                    <option>DESISNTALAÇÃO</option>
+                                    
+                                </select>
+                            </div>
+                        </div>    
+                        <div class="row">   
+                            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 mb-2">
+                                <strong>Tipo:</strong>
+                                <select class="form-control" id="input-select" name="tipo">
+                                    <option {% if tipo == 'Campanha' %}selected{% endif %}>Campanha</option>
+                                    <option {% if tipo == 'Projeto' %}selected{% endif %}>Projeto</option>
+                                    <option {% if tipo == 'Abertura' %}selected{% endif %}>Abertura</option>
+                                </select>
+
+                            </div>
+                            
+
+                            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mb-2">
+
+                                <strong>Nome:</strong>
+                                {{ form.nome_campanha }}
+                            </div>
+                            
+                            
+
+                            
+                        </div>
+                    
+                    
+                        <div class="row">
+                            <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 mb-2">
+                                <strong>Nome Produto:</strong>
+                                {{ form.nome_produto }}
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                <strong for="input-select">Canal</strong>
+                                <select class="form-control " name="canal">
+                                    <option>WHS</option>
+                                    <option>WHS - ESPECIALIZADOS</option>
+                                    <option>DTC</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-9 col-sm-12 col-12">
+                                <div class="">
+                                    <strong>Loja:</strong>
+
+                                    <select class="form-control" id="List_estabelecimento" name="List_estabelecimento">
+
+                                            {% for nome in chave_store %}
+                                            <option value="{{nome.chave_store}}">{{nome.chave_store}}</option>
+                                            {%endfor%}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 mb-2">
                                 
                                 <strong>Imagen:</strong>
                                 {{ form.img }}
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                            <label for="input-select">Tipo</label>
-                            <select class="form-control" id="input-select" name="tipo">
-                                <option {% if tipo == 'Campanha' %}selected{% endif %}>Campanha</option>
-                                <option {% if tipo == 'Projeto' %}selected{% endif %}>Projeto</option>
-                                <option {% if tipo == 'Abertura' %}selected{% endif %}>Abertura</option>
-                            </select>
-                            
-                        </div>
                         
-                    </div>
+                    
                     <div class="card-body">
-                        <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                            {% if messages %}
-                           <ul class="messages">
-                               {% for message in messages %}
-                                   <li class="{{ message.tags }}">{{ message }}</li>
-                               {% endfor %}
-                           </ul>
-                            {% endif %}
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
+                                   {% for message in messages %}
+                                   <div class="alert alert-success" role="alert">
+                                    {{ message }}
+                                    </div>
+                                   {% endfor %}
+                            </div>
                         </div>
                     </div>
-                        <button type="submit">Upload</button>   
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
+                                <button type="submit">Upload</button> 
+                            </div>
+                        </div>
+                    </div>
+                          
                         </form>
                     
                     
@@ -185,4 +258,29 @@
 <script src="{% static 'cadastro_usuario/assets/vendor/xlsx_export/js/xlsx.full.min.js'%}"></script>
 <script src="{% static 'cadastro_usuario/assets/libs/js/main-js.js'%}"></script>
 <script src="{% static 'cadastro_usuario/assets/libs/js/jquery.multiselect.js'%}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.pt.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.datepicker').datepicker({
+            format: 'dd/mm/yyyy',  // Formato da data
+            autoclose: true,      // Fecha automaticamente ao selecionar
+            todayHighlight: true,  // Destaca a data de hoje
+            language: 'pt-br'  // Define o idioma como português
+        });
+    });
+</script>
+
+<!-- Inicializar o Select2 -->
+<script>
+    $(document).ready(function() {
+
+        $('#List_estabelecimento').select2({
+            placeholder: "Selecione um canal",
+            allowClear: true // Permite limpar a seleção
+        });
+    });
+  </script>
+
 </html>

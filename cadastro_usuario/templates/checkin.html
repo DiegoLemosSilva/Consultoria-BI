@@ -69,6 +69,9 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="{%url 'cad_campanha'%}">Campanha <span class="badge badge-secondary"></span></a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{%url 'upload_photo'%}">Upload Checkin <span class="badge badge-secondary"></span></a>
+                                        </li>
                                         
                                         
                                     </ul>
@@ -177,7 +180,7 @@
                                     </div>
                                     {% if tipo == 'Campanha' or tipo == 'Projeto' %}
                                         <div class="form-row">
-                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-2">
                                                 
                                                 <label for="input-select">selecione {{tipo}}</label>
                                                 <select class="form-control" id="input-select" name="nome_campanha">
@@ -190,11 +193,11 @@
                                                     {% endfor %}
                                                 </select>
                                             </div>
-                                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-2">
                                                 <label for="input-select">Produto</label>
                                                 <select class="form-control" id="input-select" name="produto">
                                                     <option > All </option>
-                                                    {% for produto in chekin %}
+                                                    {% for produto in list_Produto %}
                                                         <option {% if produto.nome_produto == nome_produto %}selected{% endif %}> {{ produto.nome_produto }} </option>
                                                 
                                                     {% empty %}
@@ -239,7 +242,7 @@
                                                 <img style="width: 300; height: 300px; object-fit: contain;" src="{% static 'cadastro_usuario' %}/assets/images/{{ foto.img }}" class="img-fluid" alt="Card image cap">
                                             </div>
                                             <div class="card-body">                                                
-                                                <p class="card-text">{{foto.estabelecimento}} - {{foto.cidade}} - {{foto.estado}}</p></p>                                                
+                                                <p class="card-text">{{foto.estabelecimento}}</p></p>                                                
                                             </div>
                                         </div>
                                     </div>

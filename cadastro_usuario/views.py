@@ -1,6 +1,6 @@
 # views.py
 from django.shortcuts import render, redirect
-from .models import model_db_CheckinI,model_db_cardapio,upload_photo_chekin
+from .models import model_db_CheckinI,model_db_cardapio,upload_photo_chekin,model_db_estabelecimento
 from .forms import PhotoFormCheckin
 from django.contrib import messages  # Importando o sistema de mensagens
 from django.http import HttpResponse
@@ -16,7 +16,7 @@ def checkin (request):
         nome_canal = request.GET.get('canal', '')
         ListCheckinI = model_db_CheckinI.get_by_instalacao(tipo,tipo_servico,nome_canal,'','')
         campanhas = ListCheckinI.values('nome_campanha').distinct()
-                
+        list_Produto = ListCheckinI.values('nome_produto').distinct()        
            
         nome_campanha = request.GET.get('nome_campanha', 'default')
         produto = request.GET.get('produto', '')
@@ -36,11 +36,12 @@ def checkin (request):
             'nome_produto':produto,
             'campanhas':campanhas,
             'tipo':tipo,
-            'nome_canal':nome_canal
+            'nome_canal':nome_canal,
+            'list_Produto':list_Produto,
             
             
             }
-        return render(request, 'Instalacao.html', context)
+        return render(request, 'checkin.html', context)
 
 def cad_projetos(request):
     # Verifica o valor do botão avançar
@@ -143,20 +144,32 @@ def cad_campanha(request):
 
 def upload_photo(request):
     
-    
+    form = PhotoFormCheckin()
+    todos_os_estabelecimentos = model_db_estabelecimento.objects.all()
+    chave_store = todos_os_estabelecimentos.values('chave_store').distinct()
+    context = {
+            'chave_store':chave_store,
+            'form':form
+    }    
     if request.method == 'POST':
         form = PhotoFormCheckin(request.POST, request.FILES)
         tipo = request.POST.get('tipo', '')
+        nome_tipo_servico = request.POST.get('nome_tipo_servico', '')
+        canal = request.POST.get('canal', '')
+        List_estabelecimento = request.POST.get('List_estabelecimento', '')
         if form.is_valid():
             instancia = form.save(commit=False)
             instancia.tipo = tipo
+            instancia.tipo_servico = nome_tipo_servico
+            instancia.canal = canal
+            instancia.estabelecimento = List_estabelecimento
             instancia.save()  # Agora salva no banco,
             messages.success(request, 'Cadastro realizado com sucesso!')
     else:
         form = PhotoFormCheckin()
 
 
-    return render(request, 'uploadcheckin.html', {'form': form})  
+    return render(request, 'uploadcheckin.html',context)  
 
 
 
