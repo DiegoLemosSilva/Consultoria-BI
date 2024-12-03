@@ -142,14 +142,25 @@ def cad_campanha(request):
         
 
 def upload_photo(request):
+    
+    
     if request.method == 'POST':
         form = PhotoFormCheckin(request.POST, request.FILES)
+        tipo = request.POST.get('tipo', '')
         if form.is_valid():
-            form.save()
-            
+            instancia = form.save(commit=False)
+            instancia.tipo = tipo
+            instancia.save()  # Agora salva no banco,
+            messages.success(request, 'Cadastro realizado com sucesso!')
     else:
         form = PhotoFormCheckin()
-    return render(request, 'uploadcheckin.html', {'form': form})     
+
+
+    return render(request, 'uploadcheckin.html', {'form': form})  
+
+
+
+
         
             
 

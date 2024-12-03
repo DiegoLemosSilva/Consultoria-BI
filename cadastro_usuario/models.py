@@ -57,18 +57,27 @@ def custom_upload_to(instance, filename):
     new_name = f"{form_value.replace(' ', '_')}{ext}"  # Define o novo nome
     return f"{new_name}"
 
-    
+list_Tipo = [
+    ('Projeto','Projeto'),
+    ('Campanha','Campanha'),
+]    
+
+
 
 class upload_photo_chekin(models.Model):
     chekin_id = models.AutoField(primary_key=True)  # Define chekin_id como a chave primária
+    nome_campanha = models.CharField(db_column='nome_campanha')
+    tipo = models.CharField(db_column='tipo')
+    tipo_servico = models.CharField(db_column='tipo_servico')
+
     estabelecimento = models.TextField(db_column='estabelecimento')
     img =  models.ImageField(upload_to=custom_upload_to)
     cidade = models.TextField(db_column='cidade')
     estado = models.TextField(db_column='estado')
-    tipo_servico = models.TextField(db_column='tipo_servico')
-    nome_campanha = models.IntegerField(db_column='nome_campanha')
+    
+    
     nome_produto = models.TextField(db_column='nome_produto')
-    tipo = models.TextField(db_column='tipo')
+    
     canal = models.TextField(db_column='canal')
 
     class Meta:
