@@ -24,7 +24,7 @@ def checkin (request):
             
 
         if produto == 'All' :           
-            chekin = model_db_CheckinI.get_by_instalacao(tipo,tipo_servico,nome_canal,nome_campanha,'')
+            chekin = model_db_CheckinI.get_by_instalacao(tipo,tipo_servico,nome_canal,nome_campanha,'ALL')
             list_Produto = chekin.values('nome_produto').distinct() 
         else:
             chekin = model_db_CheckinI.get_by_instalacao(tipo,tipo_servico,nome_canal,nome_campanha,produto)

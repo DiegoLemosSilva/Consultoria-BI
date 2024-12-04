@@ -36,20 +36,26 @@ class model_db_CheckinI(models.Model):
     def get_by_instalacao(cls,tipo,nome_tipo_servico,canal, nome_campanha,nome_produto):
         # Verifique se ambos os filtros têm valores antes de realizar a consulta
         if tipo and nome_tipo_servico and canal and nome_campanha == '':
-            return cls.objects.using('default').filter(
-                tipo__icontains=tipo,
-                tipo_servico__icontains=nome_tipo_servico,
-                canal__icontains=canal,
+            return cls.objects.filter(
+                tipo__exact=tipo,
+                tipo_servico__exact=nome_tipo_servico,
+                canal__exact=canal,
             )
-        elif nome_campanha and nome_tipo_servico and tipo and canal:
-            return cls.objects.using('default').filter(
-                tipo__icontains=tipo,
-                nome_campanha__icontains=nome_campanha,
-                nome_produto__icontains=nome_produto,
-                tipo_servico__icontains=nome_tipo_servico,
-                canal__icontains=canal,
-
+        elif nome_campanha and nome_tipo_servico and tipo and canal and nome_produto == 'ALL':
+            return cls.objects.filter(
+                tipo__exact=tipo,
+                tipo_servico__exact=nome_tipo_servico,
+                canal__exact=canal,
+                nome_campanha__exact=nome_campanha,
             )
+        elif nome_campanha and nome_tipo_servico and tipo and canal and nome_produto != 'ALL':
+            return cls.objects.filter(
+                tipo__exact=tipo,
+                tipo_servico__exact=nome_tipo_servico,
+                canal__exact=canal,
+                nome_campanha__exact=nome_campanha,
+                nome_produto__exact=nome_produto,
+            )    
         else:
             # Caso algum filtro seja None ou vazio, retorne um queryset vazio
             return cls.objects.none()
