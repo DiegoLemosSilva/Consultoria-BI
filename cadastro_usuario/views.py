@@ -1,9 +1,10 @@
 # views.py
 from django.shortcuts import render, redirect
-from .models import model_db_CheckinI,model_db_cardapio,upload_photo_chekin,model_db_estabelecimento
-from .forms import PhotoFormCheckin
+from .models import model_db_CheckinI,model_db_cardapio,upload_photo_chekin,model_db_estabelecimento,model_db_plano_acao
+from .forms import PhotoFormCheckin,UploadFileFormPlanoAcao
 from django.contrib import messages  # Importando o sistema de mensagens
 from django.http import HttpResponse
+import pandas as pd
 
 def checkin (request):
 
@@ -172,7 +173,31 @@ def upload_photo(request):
     return render(request, 'uploadcheckin.html',context)  
 
 
-
+def upload_excel_plano_acao(request):
+    if request.method == "POST":
+        form = UploadFileFormPlanoAcao(request.POST, request.FILES)
+        if form.is_valid():
+            file = request.FILES['file']
+            file_name = file.name
+            df = pd.read_excel(file, engine='openpyxl')  # Ler o Excel
+            model_db_plano_acao.objects.filter(nome_arquivo=file_name).delete()
+            for _, row in df.iterrows():
+                model_db_plano_acao.objects.create(
+                    canal=row['canal'],
+                    campanha=row['campanha'],
+                    loja=row['loja'],
+                    cidade=row['cidade'],
+                    estado=row['estado'],
+                    produto=row['produto'],
+                    quantidade=row['quantidade'],
+                    valor_unit=row['valor_unit'],
+                    nome_arquivo=file_name
+                )
+                messages.success(request, 'Upload realizado com sucesso!')
+            
+    else:
+        form = UploadFileFormPlanoAcao()
+    return render(request, "uploadPlanoAcao.html", {"form": form})
 
         
             

@@ -103,39 +103,6 @@ class model_db_estabelecimento(models.Model):
         managed = False  # Impede que o Django gerencie a tabela
    
 
-""" class model_db_campanha(models.Model):
-
-    id_campanha = models.AutoField(primary_key=True)
-    nome_campanha = models.CharField(db_column='nome_campanha')
-    tipo = models.CharField(db_column='tipo')
-
-    class Meta:
-        db_table = '"br_addidas"."campanha"'  # Nome da tabela existente
-        managed = False  # Impede que o Django gerencie a tabela
-    
-    @classmethod
-    def get_by_campanha(cls,tipo):
-        # Verifique se ambos os filtros têm valores antes de realizar a consulta
-        if tipo:
-            return cls.objects.using('default').filter(
-                tipo__icontains=tipo,
-            )
-        else:
-            # Caso algum filtro seja None ou vazio, retorne um queryset vazio
-            return cls.objects.none()
-
-    def __str__(self):
-        return self.nome_campanha
-
-       
-class model_db_projeto(models.Model):
-    id_projeto = models.AutoField(primary_key=True)
-    nome_projeto = models.CharField(db_column='nome_projeto')
-    canal = models.CharField(db_column='canal')
-
-    class Meta:
-        db_table = '"br_addidas"."projeto"'  # Nome da tabela existente
-        managed = False  # Impede que o Django gerencie a tabela """
 
 class model_db_cardapio(models.Model):
     id_material = models.AutoField(primary_key=True)
@@ -145,11 +112,32 @@ class model_db_cardapio(models.Model):
     Preco_maior_10 = models.CharField(db_column='Preco > 10')
     Preco_maior_30 = models.CharField(db_column='Preco > 30')
     Preco_maior_50 = models.CharField(db_column='Preco > 50')
+
     class Meta:
         db_table = '"br_addidas"."cardapio_materiais"'  # Nome da tabela existente
         managed = False  # Impede que o Django gerencie a tabela
 
 
+
+class model_db_plano_acao(models.Model):
+    id_plano_acao = models.AutoField(primary_key=True)
+    canal = models.CharField(db_column='canal')
+    campanha = models.CharField(db_column='campanha')
+    loja = models.CharField(db_column='loja')
+    cidade = models.CharField(db_column='cidade')
+    estado = models.CharField(db_column='estado')
+    produto = models.CharField(db_column='produto')
+    quantidade = models.CharField(db_column='quantidade')
+    valor_unit = models.CharField(db_column='valor_unit')
+    nome_arquivo = models.CharField(db_column='nome_arquivo')
+    
+
+    class Meta:
+        db_table = '"br_addidas"."plano_acao"'  # Nome da tabela existente
+        managed = False  # Impede que o Django gerencie a tabela
+
+    def __str__(self):
+        return self.nome
 
 
     

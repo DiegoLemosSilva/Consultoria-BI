@@ -118,12 +118,12 @@
                 <div class="row">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="page-header">
-                            <h2 class="pageheader-title">Upload Check-in</h2>
+                            <h2 class="pageheader-title">Upload Plano de Ação</h2>
                             <div class="page-breadcrumb">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb">
                                         <li class="breadcrumb-item">Cadastros</li>
-                                        <li class="breadcrumb-item">Check In</li>
+                                        <li class="breadcrumb-item">Upload Plano de Ação</li>
                                         
                                         
                                         
@@ -137,91 +137,28 @@
                 <!-- end pageheader -->
                 <!-- ============================================================== -->
                 <div class="card">
-                    <form method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-
-                                <strong>Data:</strong>
-                                {{ form.data }}
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-
-                                <strong>Protocolo:</strong>
-                                {{ form.protocolo }}
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                                <strong for="input-select">Tipo Serviço:</strong>
-                                <select class="form-control" id="input-select" name="nome_tipo_servico">
-                                    <option>INSTALAÇÃO</option>
-                                    <option>DESISNTALAÇÃO</option>
+                        <form method="post" enctype="multipart/form-data">
+                           
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
                                     
-                                </select>
-                            </div>
-                        </div>    
-                        <div class="row">   
-                            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 mb-2">
-                                <strong>Tipo:</strong>
-                                <select class="form-control" id="input-select" name="tipo">
-                                    <option {% if tipo == 'Campanha' %}selected{% endif %}>Campanha</option>
-                                    <option {% if tipo == 'Projeto' %}selected{% endif %}>Projeto</option>
-                                    <option {% if tipo == 'Abertura' %}selected{% endif %}>Abertura</option>
-                                </select>
-
-                            </div>
-                            
-
-                            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12 mb-2">
-
-                                <strong>Nome:</strong>
-                                {{ form.nome_campanha }}
-                            </div>
-                            
-                            
-
-                            
-                        </div>
-                    
-                    
-                        <div class="row">
-                            <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 mb-2">
-                                <strong>Nome Produto:</strong>
-                                {{ form.nome_produto }}
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 mb-2">
-                                <strong for="input-select">Canal</strong>
-                                <select class="form-control " name="canal">
-                                    <option>WHS</option>
-                                    <option>WHS - ESPECIALIZADOS</option>
-                                    <option>DTC</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xl-12 col-lg-12 col-md-9 col-sm-12 col-12">
-                                <div class="">
-                                    <strong>Loja:</strong>
-
-                                    <select class="form-control" id="List_estabelecimento" name="List_estabelecimento">
-
-                                            {% for nome in chave_store %}
-                                            <option value="{{nome.chave_store}}">{{nome.chave_store}}</option>
-                                            {%endfor%}
-                                    </select>
+                                    <strong>Arquivo:</strong>
+                                    {{ form.file }}
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12 mb-2">
-                                
-                                <strong>Imagen:</strong>
-                                {{ form.img }}
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 mb-2">
+                                    <button id="exportar-excel" class="btn-primary btn-sm" type="submit" name="Avancar" value=2>
+                                        <i class="fas fa-file-excel"></i> importar Excel
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                            
                         
-                    
+                        </form>
+                    </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
@@ -233,18 +170,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-2">
-                                <button type="submit" class="btn btn-primary btn-sm"> <i class="far fa-file-image"></i> Upload</button> 
-                            </div>
-                        </div>
-                    </div>
-                          
-                        </form>
                     
-                    
-
                 </div>
             </div>
             
@@ -263,27 +189,5 @@
 <script src="{% static 'cadastro_usuario/assets/libs/js/jquery.multiselect.js'%}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.pt.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-        $('.datepicker').datepicker({
-            format: 'dd/mm/yyyy',  // Formato da data
-            autoclose: true,      // Fecha automaticamente ao selecionar
-            todayHighlight: true,  // Destaca a data de hoje
-            language: 'pt-br'  // Define o idioma como português
-        });
-    });
-</script>
-
-<!-- Inicializar o Select2 -->
-<script>
-    $(document).ready(function() {
-
-        $('#List_estabelecimento').select2({
-            placeholder: "Selecione um canal",
-            allowClear: true // Permite limpar a seleção
-        });
-    });
-  </script>
 
 </html>

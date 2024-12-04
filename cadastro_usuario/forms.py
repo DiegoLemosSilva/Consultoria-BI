@@ -19,6 +19,9 @@ class PhotoFormCheckin(forms.ModelForm):
             )
             
         }
+    
+class UploadFileFormPlanoAcao(forms.Form):
+    file = forms.FileField()
 
 
 
