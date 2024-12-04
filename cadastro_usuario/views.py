@@ -17,7 +17,7 @@ def checkin (request):
         nome_canal = request.GET.get('canal', '')
         ListCheckinI = model_db_CheckinI.get_by_instalacao(tipo,tipo_servico,nome_canal,'','')
         campanhas = ListCheckinI.values('nome_campanha').distinct()
-        list_Produto = ListCheckinI.values('nome_produto').distinct()        
+              
            
         nome_campanha = request.GET.get('nome_campanha', 'default')
         produto = request.GET.get('produto', '')
@@ -25,8 +25,10 @@ def checkin (request):
 
         if produto == 'All' :           
             chekin = model_db_CheckinI.get_by_instalacao(tipo,tipo_servico,nome_canal,nome_campanha,'')
+            list_Produto = chekin.values('nome_produto').distinct() 
         else:
             chekin = model_db_CheckinI.get_by_instalacao(tipo,tipo_servico,nome_canal,nome_campanha,produto)
+            list_Produto = chekin.values('nome_produto').distinct() 
                 # Obtém todos os registros do modelo Escrito
 
         context = {
