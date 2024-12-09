@@ -210,7 +210,16 @@ def upload_excel_plano_acao(request):
     return render(request, "uploadPlanoAcao.html", {"form": form})
 
         
-            
+def bancoprecos(request):
+    todos_os_cardapios = model_db_cardapio.objects.all()
+    pecas = todos_os_cardapios.values('peca').distinct()
+    # Contexto inicial
+    context = {
+        'todos_os_cardapios':todos_os_cardapios,
+        'pecas':pecas,
+    }
+
+    return render(request, "Banco_Precos.html",context)            
 
         
 

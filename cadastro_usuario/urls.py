@@ -11,7 +11,7 @@ urlpatterns = [
     path('cadastro_campanha/', views.cad_campanha, name='cad_campanha'),
     path('upload/', views.upload_photo, name='upload_photo'),
     path('uploadPlanoAcao/', views.upload_excel_plano_acao, name='upload_excel_plano_acao'),
-
+    path('bancoprecos/', views.bancoprecos, name='Banco_Precos'),
     
 ]
 # Servir arquivos de mídia em modo de desenvolvimento
