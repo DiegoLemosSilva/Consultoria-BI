@@ -204,9 +204,21 @@
                         {% if canal_selecionado == 'DTC' %}
                         <div class="row">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <strong>Lojas:</strong>                                                                   
-                                <!-- Lista de estados e lojas -->
-                                <ul id="statesContainer" class="list-group"></ul>    
+
+                                 <!-- Botão para abrir/fechar -->
+                                <div class="dropdown-toggle-div border rounded p-2" data-bs-toggle="collapse" data-bs-target="#dropdownContent" style="cursor: pointer;">
+                                    <strong>Selecione uma loja: </strong><i class="fas fa-arrow-circle-down"></i> 
+                                </div>
+                            </div>    
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <!-- Div que aparece/desaparece -->
+                                <div id="dropdownContent" class="collapse mt-2 border rounded p-3 bg-light">
+                                    <strong>Lojas:</strong>                                                                   
+                                    <!-- Lista de estados e lojas -->
+                                    <ul id="statesContainer" class="list-group"></ul>  
+                                </div>
+
+                                  
                             </div> 
                         </div>
                         {%endif%}
@@ -430,17 +442,20 @@
         
 
     </div>
-    
+</body>    
     <!-- ============================================================== -->
     <!-- end main wrapper -->
     <!-- ============================================================== -->
     <!-- Optional JavaScript -->
     <script src="{% static 'cadastro_usuario/assets/vendor/jquery/jquery-3.3.1.min.js'%}"></script>
-    <script src="{% static 'cadastro_usuario/assets/vendor/bootstrap/js/bootstrap.bundle.js'%}"></script>
+    <script src="{% static 'cadastro_usuario/assets/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+
+    
     <script src="{% static 'cadastro_usuario/assets/vendor/select2/js/select2.min.js'%}"></script>
     <script src="{% static 'cadastro_usuario/assets/vendor/xlsx_export/js/xlsx.full.min.js'%}"></script>
     <script src="{% static 'cadastro_usuario/assets/libs/js/main-js.js'%}"></script>
     <script src="{% static 'cadastro_usuario/assets/libs/js/jquery.multiselect.js'%}"></script>
+
 
 <script>
         const todos_as_lojas = [
@@ -847,6 +862,6 @@ $('select[multiple].active.3col').multiselect({
     });
   </script>
 
-</body>
+
  
 </html>
