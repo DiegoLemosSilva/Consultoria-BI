@@ -18,7 +18,23 @@
     <link rel="stylesheet" href="{% static 'cadastro_usuario/assets/vendor/select2/css/select2.css'%}">
     
 </head>
+<style>
+    ul {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* Divide em 2 colunas */
+        gap: 10px; /* Espaço entre os itens */
+        list-style: none; /* Remove os marcadores padrão */
+        padding: 0; /* Remove o padding padrão */
+        margin: 0; /* Remove o margin padrão */
+    }
 
+    li {
+        margin-left: 0; /* Remove a margem extra aplicada no HTML */
+    }
+    li label {
+    margin-left: 8px; /* Adiciona espaçamento entre o checkbox e o texto */
+    }
+</style>
 <body>
     <!-- ============================================================== -->
     <!-- main wrapper -->
@@ -167,60 +183,31 @@
                 <div class="card">                     
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
                                 <label for="input-select">Nome Campanha selecionado</label>
                                 <input type="text" class="form-control" id="NomeProjeto" placeholder="" value="{{nome_projeto}}" required="" name="nome_projeto" readonly>
                             </div>
-                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
                                 <label for="input-select">canal selecionado</label>
                                 <input type="text" class="form-control" id="CanalSelecionado" placeholder="" value="{{canal_selecionado}}" required="" name="canal" readonly >
+                            </div>
+                            <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12">
+                                <label for="input-select">Tipo Loja</label>
+                                <select name="list" id="TipoLoja" class="form-control">                                            
+                                    {% for loja in tipo%}      
+                                        <option value="{{loja.tipo}}">{{loja.tipo}}</option>
+                                    {%endfor%}                                     
+                                    
+                                </select>
                             </div>
                         </div>
                         {% if canal_selecionado == 'DTC' %}
                         <div class="row">
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                                
-                                <strong>Store Concept:</strong>                                          
-                                <select name="list" multiple="multiple" id="StoreConcept" class="3col active form-control">                                            
-                                    <option value="BRAND CENTER">BRAND CENTER</option>
-                                    <option value="CORE">CORE</option>
-                                    <option value="HOME OF SPORT (HOS)">HOME OF SPORT (HOS)</option>
-                                    <option value="HOMECOURT">HOMECOURT</option>
-                                    <option value="STADIUM 1.0">STADIUM 1.0</option>
-                                    <option value="STADIUM 2.0">STADIUM 2.0</option>
-                                    <option value="PULSE">PULSE</option>
-                                    <option value="NEIGHBOURHOOD">NEIGHBOURHOOD</option>
-                                    <option value="THE COLLECTION">THE COLLECTION</option>
-                                    
-                                    
-                                </select>
-                                
-                            </div>
-                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                                
-                                <strong>Segment:</strong>                                          
-                                <select name="list" multiple="multiple" id="Segment" class="3col active form-control">                                            
-                                    <option value="MID">MID</option>
-                                    <option value="TOP">TOP</option>
-                                    <option value="VALUE">VALUE</option>
-                                                                       
-                                    
-                                </select>
-                                
-                            </div>
-                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
-                                
-                                <strong>Execução:</strong>                                          
-                                <select name="list" multiple="multiple" id="Execucao" class="3col active form-control">                                            
-                                    <option value="BEST">BEST</option>
-                                    <option value="BETTER">BETTER</option>
-                                    <option value="GOOD">GOOD</option>
-                                                                       
-                                    
-                                </select>
-                                
-                            </div>
-                            
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <strong>Lojas:</strong>                                                                   
+                                <!-- Lista de estados e lojas -->
+                                <ul id="statesContainer" class="list-group"></ul>    
+                            </div> 
                         </div>
                         {%endif%}
 
@@ -249,7 +236,6 @@
                                     <option value="World Tennis">World Tennis</option>                                           
                                 </select>
                             </div>
-                            {%endif%}
                             <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col-12">
                                 
                                 <strong>UF:</strong>                                          
@@ -264,8 +250,10 @@
                                 </select>
                             
                             </div>
+                            {%endif%}
+                            
                             {% if canal_selecionado == 'DTC' %}
-                            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <div class="">
                                     <strong>Material:</strong>
 
@@ -367,10 +355,7 @@
                                                 {% if canal_selecionado == 'DTC' %}    
                                                     <th class="border-0">Nome Campanha</th>
                                                     <th class="border-0">Canal Selecionado</th>
-                                                    <th class="border-0">Store Concept</th>
-                                                    <th class="border-0">Segment</th>
-                                                    <th class="border-0">Execucao</th>
-                                                    <th class="border-0">Uf</th>
+                                                    <th class="border-0">Loja</th>
                                                     <th class="border-0">Peça</th>
                                                     <th class="border-0">Variaçao</th>
                                                     <th class="border-0">Qtd</th>
@@ -456,7 +441,138 @@
     <script src="{% static 'cadastro_usuario/assets/vendor/xlsx_export/js/xlsx.full.min.js'%}"></script>
     <script src="{% static 'cadastro_usuario/assets/libs/js/main-js.js'%}"></script>
     <script src="{% static 'cadastro_usuario/assets/libs/js/jquery.multiselect.js'%}"></script>
-  
+
+<script>
+        const todos_as_lojas = [
+            {% for loja in todos_as_lojas %}
+                {
+                    id: '{{ loja.id_estabelecimento }}',
+                    loja: '{{ loja.estado }}' + ' | ' + '{{ loja.loja }}',
+                    estado: '{{ loja.estado }}',
+                    tipo: '{{ loja.tipo }}',
+                },
+            {% endfor %}
+        ];
+
+        const estados = {};
+
+        // Organiza as lojas por estado
+        todos_as_lojas.forEach(loja => {
+            if (!estados[loja.estado]) {
+                estados[loja.estado] = [];
+            }
+            estados[loja.estado].push(loja);
+        });
+
+        
+        function updatecheckbox() {
+    const statesContainer = document.getElementById('statesContainer');
+    statesContainer.innerHTML = ''; // Limpa o container antes de renderizar
+
+    // Obtém o tipo selecionado no select
+    const tipoSelecionado = document.getElementById('TipoLoja').value;
+
+    // Filtra a lista de lojas pelo tipo selecionado
+    const lojasFiltradas = todos_as_lojas.filter(loja => loja.tipo === tipoSelecionado);
+
+    // Organiza as lojas filtradas por estado
+    const estados = {};
+    lojasFiltradas.forEach(loja => {
+        if (!estados[loja.estado]) {
+            estados[loja.estado] = [];
+        }
+        estados[loja.estado].push(loja);
+    });
+
+    // Cria a estrutura para cada estado
+    for (const estado in estados) {
+        const estadoItem = document.createElement('li');
+        estadoItem.classList.add('list-group-item', 'list-group-item-action', 'estado-item');
+
+        // Cria o checkbox principal para o estado
+        const estadoCheckbox = document.createElement('input');
+        estadoCheckbox.type = 'checkbox';
+        estadoCheckbox.classList.add('select-item', 'main-color');
+        estadoCheckbox.onclick = function () {
+            toggleSubItems(estadoCheckbox, estado); // Controla os sub-itens
+        };
+
+        const estadoLabel = document.createElement('label');
+        estadoLabel.textContent = estado;
+        estadoLabel.style.fontWeight = 'bold'; // Adiciona o negrito ao nome da estado
+        estadoItem.appendChild(estadoCheckbox);
+        estadoItem.appendChild(estadoLabel);
+
+        // Cria a lista de lojas do estado
+        const estadoList = document.createElement('ul');
+        estadoList.classList.add('list-unstyled'); // Usando uma lista sem estilo para as lojas
+
+        // Cria as lojas dentro do estado
+        estados[estado].forEach(loja => {
+            const lojaItem = document.createElement('li');
+            lojaItem.classList.add('sub-item');
+            lojaItem.classList.add('ms-4'); // Adiciona indentação para separar as lojas do estado
+
+            const lojaCheckbox = document.createElement('input');
+            lojaCheckbox.type = 'checkbox';
+            lojaCheckbox.classList.add('select-item', 'sub-item'); // Adiciona a classe sub-item
+            lojaCheckbox.id = `checkbox-${loja.id}`;
+            lojaCheckbox.value = loja.id;
+            lojaItem.style.marginLeft = '10px';  // Indentação
+
+            const lojaLabel = document.createElement('label');
+            lojaLabel.textContent = loja.loja;
+            lojaLabel.setAttribute('for', `checkbox-${loja.id}`);
+
+            // Adiciona o estilo em linha para a fonte
+            
+            lojaLabel.style.fontSize = '0.75rem';  // Tamanho de fonte menor
+
+            lojaItem.appendChild(lojaCheckbox);
+            lojaItem.appendChild(lojaLabel);
+
+            estadoList.appendChild(lojaItem); // Adiciona a loja à lista de lojas do estado
+        });
+
+        estadoItem.appendChild(estadoList); // Adiciona a lista de lojas ao estado
+        statesContainer.appendChild(estadoItem); // Adiciona o estado ao container
+    }
+}
+
+// Função para alternar o estado dos sub-itens ao clicar no checkbox principal
+function toggleSubItems(mainCheckbox, estado) {
+    const estadoList = mainCheckbox.parentElement.querySelector('ul');
+    const checkboxes = estadoList.querySelectorAll('.sub-item input');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = mainCheckbox.checked;
+    });
+}
+
+// Chama a função ao selecionar um tipo
+document.getElementById('TipoLoja').addEventListener('change', updatecheckbox);
+
+        
+        // Função para capturar os checkboxes selecionados e exibir em um alert
+        function captureSelected() {
+            const selectedLojas = [];
+            const checkboxes = document.querySelectorAll('.sub-item:checked');
+            
+            checkboxes.forEach(checkbox => {
+                const lojaName = checkbox.nextElementSibling.textContent;
+                selectedLojas.push(lojaName);
+            });
+
+            if (selectedLojas.length > 0) {
+                alert('Lojas selecionadas: ' + selectedLojas.join(', '));
+            } else {
+                alert('Nenhuma loja selecionada.');
+            }
+        }
+
+        // Chama a função para renderizar a lista de estados e lojas
+        updatecheckbox();
+</script>
+ 
 <script>
 $(function() {
 
@@ -537,28 +653,17 @@ $('select[multiple].active.3col').multiselect({
 }
     // Função para adicionar um produto com quantidade ao carrinho
     function addProduct(button) {
-        const tipo = button
+        const tipo = button;
         let productValue = 0;
         const NomeProjeto = document.getElementById('NomeProjeto').value;
         const CanalSelecionado = document.getElementById('CanalSelecionado').value;
-        const taskList = document.getElementById('taskList');
-        const Uf = document.getElementById('Uf');
-        const UftSelected = Array.from(Uf.selectedOptions).map(option => option.value);
-        
-        
+        const taskList = document.getElementById('taskList');              
+        const checkboxes = document.querySelectorAll('.sub-item:checked');
+
         
         if(CanalSelecionado === 'DTC'){
             
-                const StoreConcept = document.getElementById('StoreConcept');
-                const StoreConceptSelected = Array.from(StoreConcept.selectedOptions).map(option => option.value);
-
-                const Segment = document.getElementById('Segment');
-                const SegmentSelected = Array.from(Segment.selectedOptions).map(option => option.value);
-
-                const Execucao = document.getElementById('Execucao');
-                const ExecucaoSelected = Array.from(Execucao.selectedOptions).map(option => option.value);
-
-
+                
 
             if(tipo === 1){
                 const productList = document.getElementById('productList');
@@ -603,70 +708,78 @@ $('select[multiple].active.3col').multiselect({
                 const taskItem = document.createElement('tr');
                 taskItem.className = 'task';
 
-
-
-                taskItem.innerHTML = `
-
-                    <tr name="materiais">
-                        <td>${NomeProjeto}</td>
-                        <td>${CanalSelecionado}</td>
-                        <td>${StoreConceptSelected.join(', ')}</td>
-                        <td>${SegmentSelected.join(', ')}</td>
-                        <td>${ExecucaoSelected.join(', ')}</td>
-                        <td>${UftSelected.join(', ')}</td>
-                        <td>${productName}</td>
-                        <td>${variacao}</td>
-                        <td>${quantity} </td>
-                        <td>${productValue}</td>
-                        <td>${totalPrice}</td>
-                        <td><a href="#" onclick="removeTask(this, ${totalPrice})" class="btn btn-outline-danger btn-xs">Remover</a></td>
-                    </tr>
-                `;
-
-                // Adicionar à lista
-                taskList.appendChild(taskItem);
-
-                // Atualizar total
-                total += totalPrice;
                 
-                updateTotal();;
+
+                
+                checkboxes.forEach(selectedLojas => {
+                    const totalPrice = productValue * quantity;
+                    const taskItem = document.createElement('tr');
+                    const lojaNome = selectedLojas.nextElementSibling.textContent; // Pega o nome da loja que está ao lado do checkbox
+                    taskItem.innerHTML += `
+
+                        <tr name="materiais">
+                            <td>${NomeProjeto}</td>
+                            <td>${CanalSelecionado}</td>
+                            <td>${lojaNome}</td>
+                            <td>${productName}</td>
+                            <td>${variacao}</td>
+                            <td>${quantity} </td>
+                            <td>${productValue}</td>
+                            <td>${totalPrice}</td>
+                            <td><a href="#" onclick="removeTask(this, ${totalPrice})" class="btn btn-outline-danger btn-xs">Remover</a></td>
+                        </tr>
+                    `;
+                     // Adicionar à lista
+                    taskList.appendChild(taskItem);
+                    // Atualizar total
+                    total += totalPrice;
+                        
+                    updateTotal();
+                })
+
+                
+
+                
             }
             else if(tipo === 2){
-                const NomeMaterialPersonalizado = document.getElementById('NomeMaterialPersonalizado').value;
-                const AlturaMaterialPersonalizado = document.getElementById('AlturaMaterialPersonalizado').value;
-                const LarguraMaterialPersonalizado = document.getElementById('LarguraMaterialPersonalizado').value;
-                const ComprimentoMaterialPersonalizado = document.getElementById('ComprimentoMaterialPersonalizado').value;
-                const quantityMaterialPersonalizado = document.getElementById('quantityMaterialPersonalizado').value;
-                // Criar item na lista
-                const taskItem = document.createElement('tr');
-                taskItem.className = 'task';
+                checkboxes.forEach(selectedLojas => {
+                    const NomeMaterialPersonalizado = document.getElementById('NomeMaterialPersonalizado').value;
+                    const AlturaMaterialPersonalizado = document.getElementById('AlturaMaterialPersonalizado').value;
+                    const LarguraMaterialPersonalizado = document.getElementById('LarguraMaterialPersonalizado').value;
+                    const ComprimentoMaterialPersonalizado = document.getElementById('ComprimentoMaterialPersonalizado').value;
+                    const quantityMaterialPersonalizado = document.getElementById('quantityMaterialPersonalizado').value;
+                    const lojaNome = selectedLojas.nextElementSibling.textContent; // Pega o nome da loja que está ao lado do checkbox
+
+                        // Criar item na lista
+                        const taskItem = document.createElement('tr');
+                        taskItem.className = 'task';
 
 
 
-                taskItem.innerHTML = `
+                        taskItem.innerHTML = `
 
-                    <tr name="materiais">
-                        <td>${NomeProjeto}</td>
-                        <td>${CanalSelecionado}</td>
-                        <td>${StoreConceptSelected.join(', ')}</td>
-                        <td>${SegmentSelected.join(', ')}</td>
-                        <td>${ExecucaoSelected.join(', ')}</td>
-                        <td>${UftSelected.join(', ')}</td>
-                        <td>${NomeMaterialPersonalizado}</td>
-                        <td>${NomeMaterialPersonalizado}: ${AlturaMaterialPersonalizado}cm X ${LarguraMaterialPersonalizado}cm X ${ComprimentoMaterialPersonalizado}cm</td>
-                        <td>${quantityMaterialPersonalizado}</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td><a href="#" onclick="removeTask(this, 0)" class="btn btn-outline-danger btn-xs">Remover</a></td>
-                    </tr>
-                `;
-                taskList.appendChild(taskItem);
+                            <tr name="materiais">
+                                <td>${NomeProjeto}</td>
+                                <td>${CanalSelecionado}</td>
+                                <td>${lojaNome}</td>
+                                <td>${NomeMaterialPersonalizado}</td>
+                                <td>${NomeMaterialPersonalizado}: ${AlturaMaterialPersonalizado}cm X ${LarguraMaterialPersonalizado}cm X ${ComprimentoMaterialPersonalizado}cm</td>
+                                <td>${quantityMaterialPersonalizado}</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td><a href="#" onclick="removeTask(this, 0)" class="btn btn-outline-danger btn-xs">Remover</a></td>
+                            </tr>
+                        `;
+                        taskList.appendChild(taskItem);
+                })
+                        
             }
         }
         if(CanalSelecionado === 'WHS' || CanalSelecionado === 'WHS - ESPECIALIZADOS'  ){
             const Rede = document.getElementById('Rede');
             const RedeSelected = Array.from(Rede.selectedOptions).map(option => option.value);
-
+            const Uf = document.getElementById('Uf');
+            const UftSelected = Array.from(Uf.selectedOptions).map(option => option.value);
             // Criar item na lista
             const taskItem = document.createElement('tr');
             taskItem.className = 'task';

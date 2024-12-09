@@ -145,6 +145,20 @@ class model_db_plano_acao(models.Model):
     def __str__(self):
         return self.nome
 
+class model_db_estabelecimento_dtc(models.Model):
+    id_estabelecimento = models.AutoField(primary_key=True)
+    loja = models.CharField(db_column='loja')
+    cidade = models.CharField(db_column='cidade')
+    estado = models.CharField(db_column='estado')
+    conceito = models.CharField(db_column='conceito')
+    segmento = models.CharField(db_column='segmento')
+    tipo = models.CharField(db_column='tipo')
+
+    class Meta:
+        db_table = '"br_addidas"."estabelecimento_dtc"'  # Nome da tabela existente
+        managed = False  # Impede que o Django gerencie a tabela
+        
+
 
     
 

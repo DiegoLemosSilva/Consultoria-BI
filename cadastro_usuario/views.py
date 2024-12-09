@@ -1,6 +1,6 @@
 # views.py
 from django.shortcuts import render, redirect
-from .models import model_db_CheckinI,model_db_cardapio,upload_photo_chekin,model_db_estabelecimento,model_db_plano_acao
+from .models import model_db_CheckinI,model_db_cardapio,upload_photo_chekin,model_db_estabelecimento,model_db_plano_acao,model_db_estabelecimento_dtc
 from .forms import PhotoFormCheckin,UploadFileFormPlanoAcao
 from django.contrib import messages  # Importando o sistema de mensagens
 from django.http import HttpResponse
@@ -101,12 +101,16 @@ def cad_campanha(request):
     # Verifica o valor do botão avançar
     btn_avancar = int(request.POST.get('Avancar', 1))
     todos_os_cardapios = model_db_cardapio.objects.all()
+    todos_as_lojas = model_db_estabelecimento_dtc.objects.all()
     pecas = todos_os_cardapios.values('peca').distinct()
+    tipo = todos_as_lojas.values('tipo').distinct()
     # Contexto inicial
     context = {
         'btn_avancar': btn_avancar,
         'todos_os_cardapios':todos_os_cardapios,
         'pecas':pecas,
+        'todos_as_lojas':todos_as_lojas,
+        'tipo':tipo,
     }
 
     if request.method == 'POST':
@@ -123,6 +127,8 @@ def cad_campanha(request):
                 'redes_selecionadas': redes_selecionadas,
                 'todos_os_cardapios':todos_os_cardapios,
                 'pecas':pecas,
+                'todos_as_lojas':todos_as_lojas,
+                'tipo':tipo,
             })
             return render(request, 'Cadastro_Campanha.html', context)
         
@@ -138,6 +144,8 @@ def cad_campanha(request):
                 'redes_selecionadas': redes_selecionadas,
                 'todos_os_cardapios':todos_os_cardapios,
                 'materiais':materiais,
+                'todos_as_lojas':todos_as_lojas,
+                'tipo':tipo,
             })
             return render(request, 'Cadastro_Campanha.html', context)        
     
