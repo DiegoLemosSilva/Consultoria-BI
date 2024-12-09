@@ -34,6 +34,7 @@
     li label {
     margin-left: 8px; /* Adiciona espaçamento entre o checkbox e o texto */
     }
+    
 </style>
 <body>
     <!-- ============================================================== -->
@@ -480,7 +481,7 @@
         });
 
         
-        function updatecheckbox() {
+    function updatecheckbox() {
     const statesContainer = document.getElementById('statesContainer');
     statesContainer.innerHTML = ''; // Limpa o container antes de renderizar
 
@@ -498,6 +499,24 @@
         }
         estados[loja.estado].push(loja);
     });
+
+    // Cria o "Selecionar todos" como um título sem o checkbox
+    const selectAllContainer = document.createElement('div');  // Usando div para separar
+    const selectAllTitle = document.createElement('a');  // Usando h5 para título
+    selectAllTitle.classList.add('btn', 'btn-light');
+    selectAllTitle.textContent = 'Selecionar Todos';
+    selectAllContainer.appendChild(selectAllTitle);
+
+    // Evento para selecionar/deselecionar todos os checkboxes ao clicar no título
+    selectAllTitle.onclick = function() {
+        const allCheckboxes = document.querySelectorAll('.select-item');
+        const isChecked = Array.from(allCheckboxes).every(checkbox => checkbox.checked); // Verifica se todos estão marcados
+        allCheckboxes.forEach(checkbox => {
+            checkbox.checked = !isChecked;  // Marca ou desmarca todos os checkboxes com base no estado atual
+        });
+    };
+
+    statesContainer.appendChild(selectAllContainer); // Adiciona o "Selecionar todos" ao container
 
     // Cria a estrutura para cada estado
     for (const estado in estados) {
@@ -540,7 +559,6 @@
             lojaLabel.setAttribute('for', `checkbox-${loja.id}`);
 
             // Adiciona o estilo em linha para a fonte
-            
             lojaLabel.style.fontSize = '0.75rem';  // Tamanho de fonte menor
 
             lojaItem.appendChild(lojaCheckbox);
