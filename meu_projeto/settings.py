@@ -81,8 +81,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'postgres',  # Substitua pelo nome do seu banco de dados
         'USER': 'postgres',         # Substitua pelo usuário do seu banco de dados
-        'PASSWORD': 'DocDk4yiUfITsrVq',       # Substitua pela senha do seu banco de dados
-        'HOST': 'remotely-valued-pangolin.data-1.use1.tembo.io',
+        'PASSWORD': 'fNON12gQg19NU5EW',       # Substitua pela senha do seu banco de dados
+        'HOST': 'artfully-wanted-crane.data-1.use1.tembo.io',
         'PORT': '5432',
     }
 }
